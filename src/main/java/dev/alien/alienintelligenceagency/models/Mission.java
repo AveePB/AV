@@ -28,11 +28,15 @@ public class Mission {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "agent_id", nullable = false)
+    private Long agentId;
 
-    public Mission(Long id, MissionType missionType, String name) {
+
+    public Mission(Long id, MissionType missionType, String name, Long agentId) {
         this.id = id;
         this.missionType = missionType;
         this.name = name;
+        this.agentId = agentId;
     }
 
     public Long getId() {
@@ -59,17 +63,25 @@ public class Mission {
         this.name = name;
     }
 
+    public Long getAgentId() {
+        return this.agentId;
+    }
+
+    public void setAgentId(Long agentId) {
+        this.agentId = agentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mission mission = (Mission) o;
-        return Objects.equals(this.id, mission.id) && this.missionType == mission.missionType && Objects.equals(this.name, mission.name);
+        return Objects.equals(this.id, mission.id) && this.missionType == mission.missionType && Objects.equals(this.name, mission.name) && Objects.equals(this.agentId, mission.agentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.missionType, this.name);
+        return Objects.hash(this.id, this.missionType, this.name, this.agentId);
     }
 
     @Override
@@ -78,6 +90,7 @@ public class Mission {
                 "id=" + this.id +
                 ", missionType=" + this.missionType +
                 ", name='" + this.name + '\'' +
+                ", agentId=" + this.agentId +
                 '}';
     }
 
