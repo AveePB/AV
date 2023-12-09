@@ -55,7 +55,7 @@ public class AgentController {
         return ResponseEntity.ok(requestedAgent);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Agent>> readAllAgents() {
 
         List<Agent> agents = this.agentService.fetchAllAgents();

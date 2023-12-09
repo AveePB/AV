@@ -25,8 +25,6 @@ public class MissionService {
     public Mission addNewMission(Mission mission) {
         mission.setId(null);
 
-        //MISSION AGENT_ID CHECK...
-
         return this.missionRepository.save(mission);
     }
 
@@ -48,9 +46,7 @@ public class MissionService {
 
     //UPDATE:
 
-    public Mission updateMissionAgentIdById(Long id, Long newAgentId) {
-
-        //MISSION AGENT_ID CHECK...
+    public Mission updateMissionAgentId(Long id, Long newAgentId) {
 
         Optional<Mission> optionalUpdatedMission = this.missionRepository.findById(id);
 
