@@ -30,6 +30,12 @@ public class AgentService {
 
     //READ:
 
+    public boolean containsAgentWithId(Long id) {
+        Optional<Agent> optionalAgent = this.agentRepository.findById(id);
+
+        return optionalAgent.isPresent();
+    }
+
     public Agent fetchAgentById(Long id) {
         Optional<Agent> optionalAgent = this.agentRepository.findById(id);
 
@@ -47,8 +53,6 @@ public class AgentService {
     //DELETE:
 
     public void removeAgentById(Long id) {
-
-        //DELETE ALL MISSIONS WITH THIS AGENT's ID...
 
         this.agentRepository.deleteById(id);
     }
