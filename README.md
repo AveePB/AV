@@ -12,7 +12,9 @@
     - [@Service](#service_annotation)
 
 ## Introduction <a name="introduction"></a>
-...
+Welcome to the world of the "Alien Intelligence Agency," a fascinating Spring Boot project that delves into the intricate realm 
+of basic bean annotations. Developed to unravel the fundamental concepts of Spring Boot and its powerful dependency injection 
+mechanism, this project serves as an exploration into the core functionalities and uses of bean annotations.
 
 ## Container Overview <a name="container_overview"></a>
 The ***org.springframework.context.ApplicationContext*** interface represents the **Spring IoC container** and is responsible 
@@ -32,7 +34,16 @@ and ***org.springframework.context.annotation*** packages. We often call these *
 beans through @Bean-annotated methods**. Calls to ***@Bean*** methods on ***@Configuration*** classes can also be used to define inter-bean dependencies.
 
 ```
-   ...
+   @Configuration
+   public class ManagerConfig {
+
+       @Bean
+       public AgentManager getAgentManager() {
+
+           return new AgentManager();
+       }
+   
+   }
 ```
 
 This method of declaring inter-bean dependencies works only when the ***@Bean*** method is declared within a ***@Configuration*** class. 
