@@ -58,7 +58,14 @@ If ***@Autowired*** is applied to:
 - a constructor: then the constructor is invoked with the parameters determined by the same algorithm as for the field dependency injection.  
 
 ```
-   ...
+   @RestController
+   @RequestMapping("/agent")
+   public class AgentController {
+       ...
+       @Autowired
+       private AgentService agentService;
+       ...
+   }
 ```
 
 ### @Component <a name="component_annotation"></a>
@@ -66,7 +73,17 @@ Indicates that the annotated class is a component. Such classes are considered a
 annotation-based configuration and classpath scanning.
 
 ```
-   ...
+   @Component
+   public class AgentService {
+   
+       private AgentRepository agentRepository;
+   
+       @Autowired
+       public AgentService(AgentRepository agentRepository) {
+           this.agentRepository = agentRepository;
+       }
+       ...
+   }
 ```
 
 ### @Bean <a name="bean_annotation"></a>
@@ -74,7 +91,16 @@ To declare a bean, you can annotate a method with the ***@Bean*** annotation. Yo
 an **ApplicationContext** of the type specified as the method’s return value. By default, **the bean name is the same as the method name**.
 
 ```
-   ...
+   @Configuration
+   public class ManagerConfig {
+
+       @Bean
+       public AgentManager getAgentManager() {
+
+           return new AgentManager();
+       }
+   
+   }
 ```
 
 ### @Service <a name="service_annotation"></a>
@@ -83,5 +109,15 @@ annotation, but it’s a good idea to use @Service over ***@Component*** in serv
 Additionally, tool support and additional behavior might rely on it in the future.
 
 ```
-   ...
+   @Service
+   public class AgentService {
+   
+       private AgentRepository agentRepository;
+   
+       @Autowired
+       public AgentService(AgentRepository agentRepository) {
+           this.agentRepository = agentRepository;
+       }
+       ...
+   }
 ```
