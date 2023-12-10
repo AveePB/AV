@@ -39,6 +39,10 @@ public class Mission {
         this.agentId = agentId;
     }
 
+    public Mission() {
+
+    }
+
     public Long getId() {
         return this.id;
     }

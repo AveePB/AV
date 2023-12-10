@@ -24,19 +24,14 @@ public class Agent {
     private Integer age;
 
 
-    @Override
-    public String toString() {
-        return "Agent{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
-
     public Agent(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public Agent() {
+
     }
 
     public Long getId() {
@@ -74,6 +69,15 @@ public class Agent {
     @Override
     public int hashCode() {
         return Objects.hash(this.id, this.name, this.age);
+    }
+
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 
 }
