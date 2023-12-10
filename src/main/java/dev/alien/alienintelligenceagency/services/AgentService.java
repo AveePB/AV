@@ -23,6 +23,7 @@ public class AgentService {
     //CREATE:
 
     public Agent addNewAgent(Agent agent) {
+        agent.setId(null);
 
         return this.agentRepository.save(agent);
     }

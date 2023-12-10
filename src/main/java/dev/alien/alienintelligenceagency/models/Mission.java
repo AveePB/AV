@@ -21,9 +21,9 @@ public class Mission {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "mission_type", nullable = false)
+    @Column(name = "type", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private MissionType missionType;
+    private MissionType type;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -32,9 +32,9 @@ public class Mission {
     private Long agentId;
 
 
-    public Mission(Long id, MissionType missionType, String name, Long agentId) {
+    public Mission(Long id, MissionType type, String name, Long agentId) {
         this.id = id;
-        this.missionType = missionType;
+        this.type = type;
         this.name = name;
         this.agentId = agentId;
     }
@@ -51,12 +51,12 @@ public class Mission {
         this.id = id;
     }
 
-    public MissionType getMissionType() {
-        return this.missionType;
+    public MissionType getType() {
+        return this.type;
     }
 
-    public void setMissionType(MissionType missionType) {
-        this.missionType = missionType;
+    public void setType(MissionType type) {
+        this.type = type;
     }
 
     public String getName() {
@@ -80,19 +80,19 @@ public class Mission {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mission mission = (Mission) o;
-        return Objects.equals(this.id, mission.id) && this.missionType == mission.missionType && Objects.equals(this.name, mission.name) && Objects.equals(this.agentId, mission.agentId);
+        return Objects.equals(this.id, mission.id) && this.type == mission.type && Objects.equals(this.name, mission.name) && Objects.equals(this.agentId, mission.agentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.missionType, this.name, this.agentId);
+        return Objects.hash(this.id, this.type, this.name, this.agentId);
     }
 
     @Override
     public String toString() {
         return "Mission{" +
                 "id=" + this.id +
-                ", missionType=" + this.missionType +
+                ", type=" + this.type +
                 ", name='" + this.name + '\'' +
                 ", agentId=" + this.agentId +
                 '}';
