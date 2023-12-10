@@ -23,18 +23,11 @@ public class AgentService {
     //CREATE:
 
     public Agent addNewAgent(Agent agent) {
-        agent.setId(null);
 
         return this.agentRepository.save(agent);
     }
 
     //READ:
-
-    public boolean containsAgentWithId(Long id) {
-        Optional<Agent> optionalAgent = this.agentRepository.findById(id);
-
-        return optionalAgent.isPresent();
-    }
 
     public Agent fetchAgentById(Long id) {
         Optional<Agent> optionalAgent = this.agentRepository.findById(id);

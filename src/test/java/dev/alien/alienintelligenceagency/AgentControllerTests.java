@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class AlienIntelligenceAgencyApplicationTests {
+class AgentControllerTests {
 
 	@Autowired
 	private TestRestTemplate restTemplate = null;
@@ -114,6 +114,16 @@ class AlienIntelligenceAgencyApplicationTests {
 		//AGE
 		JSONArray ages = docContext.read("$..age");
 		assertThat(ages).containsExactlyInAnyOrder(19);
+	}
+
+	@Test
+	void shouldDeleteAgentById() {
+
+	}
+
+	@Test
+	void shouldNotDeleteAgentByWrongId() {
+
 	}
 
 }

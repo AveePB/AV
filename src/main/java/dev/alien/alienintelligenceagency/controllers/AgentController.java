@@ -4,6 +4,7 @@ import dev.alien.alienintelligenceagency.models.Agent;
 import dev.alien.alienintelligenceagency.services.AgentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -36,14 +37,6 @@ public class AgentController {
 
     //READ:
 
-    @GetMapping("/ask/{id}")
-    public ResponseEntity<Boolean> containsAgentWithId(@PathVariable Long id) {
-
-        Boolean answer = this.agentService.containsAgentWithId(id);
-
-        return ResponseEntity.ok(answer);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Agent> readAgentById(@PathVariable Long id) {
 
@@ -55,7 +48,7 @@ public class AgentController {
         return ResponseEntity.ok(requestedAgent);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Agent>> readAllAgents() {
 
         List<Agent> agents = this.agentService.fetchAllAgents();
