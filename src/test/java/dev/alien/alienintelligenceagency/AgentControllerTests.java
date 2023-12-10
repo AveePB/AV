@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
@@ -36,7 +37,7 @@ class AgentControllerTests {
 	}
 
 	@Test
-	void shouldNotCreateANewAgentWhenIsNotValid() {
+	void shouldNotCreateANewAgent() {
 
 		Agent agent = new Agent(null, null, 23);
 
@@ -50,7 +51,7 @@ class AgentControllerTests {
 	@Test
 	void shouldReturnAnAgentById() {
 
-		Agent agent = new Agent(1L, "Jack", 19);
+		Agent agent = new Agent(null, "Jack", 19);
 
 		ResponseEntity<String> postResponse = this.restTemplate.postForEntity("/agent", agent, String.class);
 		assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
@@ -74,9 +75,9 @@ class AgentControllerTests {
 	}
 
 	@Test
-	void shouldNotReturnAgentByWrongId() {
+	void shouldNotReturnAnAgent() {
 
-		Agent agent = new Agent(1L, "Jack", 19);
+		Agent agent = new Agent(null, "Jack", 19);
 
 		ResponseEntity<String> postResponse = this.restTemplate.postForEntity("/agent", agent, String.class);
 		assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
@@ -89,7 +90,7 @@ class AgentControllerTests {
 	@Test
 	void shouldReturnAllAgents() {
 
-		Agent agent = new Agent(1L, "Jack", 19);
+		Agent agent = new Agent(null, "Jack", 19);
 
 		ResponseEntity<String> postResponse = this.restTemplate.postForEntity("/agent", agent, String.class);
 		assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
@@ -117,13 +118,35 @@ class AgentControllerTests {
 	}
 
 	@Test
-	void shouldDeleteAgentById() {
+	void shouldDeleteAnAgentById() {
 
+		Agent agent = new Agent(null, "Jack", 19);
+
+		ResponseEntity<String> postResponse = this.restTemplate.postForEntity("/agent", agent, String.class);
+		assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+
+		ResponseEntity<String> deleteResponse = this.restTemplate.exchange("/agent/1", HttpMethod.DELETE, null, String.class);
+		assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+
+		ResponseEntity<String> getResponse = this.restTemplate.getForEntity("/agent/1", String.class);
+		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
 	}
 
 	@Test
-	void shouldNotDeleteAgentByWrongId() {
+	void shouldNotDeleteAnAgent() {
 
+		Agent agent = new Agent(null, "Jack", 19);
+
+		ResponseEntity<String> postResponse = this.restTemplate.postForEntity("/agent", agent, String.class);
+		assertThat(postResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+
+		ResponseEntity<String> deleteResponse = this.restTemplate.exchange("/agent/2", HttpMethod.DELETE, null, String.class);
+		assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+
+		ResponseEntity<String> getResponse = this.restTemplate.getForEntity("/agent/1", String.class);
+		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 
 }
