@@ -1,6 +1,7 @@
 package dev.alien.alienintelligenceagency.controllers;
 
 import dev.alien.alienintelligenceagency.models.Mission;
+import dev.alien.alienintelligenceagency.services.AgentService;
 import dev.alien.alienintelligenceagency.services.MissionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/mission")
 public class MissionController {
@@ -19,12 +21,17 @@ public class MissionController {
     @Autowired
     private MissionService missionService;
 
+    @Autowired
+    private AgentService agentService;
+
     //CREATE:
 
     @PostMapping
     public ResponseEntity<String> createNewMission(@RequestBody Mission mission) {
 
-        //MISSION AGENT_ID CHECK...
+        //Checks if agent with such id exists.
+        if (this.agentService.fetchAgentById(mission.getAgentId()) == null)
+            return ResponseEntity.unprocessableEntity().build();
 
         Mission createdMission = this.missionService.addNewMission(mission);
 
@@ -43,10 +50,13 @@ public class MissionController {
 
         Mission requestedMission = this.missionService.fetchMissionById(id);
 
+        if (requestedMission == null)
+            return ResponseEntity.notFound().build();
+
         return ResponseEntity.ok(requestedMission);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Mission>> readAllMissions() {
         List<Mission> missions = this.missionService.fetchAllMissions();
 
@@ -56,9 +66,12 @@ public class MissionController {
     //UPDATE:
 
     @PutMapping("/{missionId}/{agentId}")
-    public ResponseEntity<String> updateMissionAgentId(Long missionId, Long agentId) {
+    public ResponseEntity<String> updateMissionAgentId(@PathVariable Long missionId, @PathVariable Long agentId) {
 
-        //MISSION AGENT_ID CHECK...
+        //Checks if agent with such id exists.
+        if (this.agentService.fetchAgentById(agentId) == null)
+            return ResponseEntity.unprocessableEntity().build();
+
 
         Mission updatedMission = this.missionService.updateMissionAgentId(missionId, agentId);
 

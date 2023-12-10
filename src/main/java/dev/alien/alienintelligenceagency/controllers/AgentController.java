@@ -3,6 +3,7 @@ package dev.alien.alienintelligenceagency.controllers;
 import dev.alien.alienintelligenceagency.models.Agent;
 import dev.alien.alienintelligenceagency.services.AgentService;
 
+import dev.alien.alienintelligenceagency.services.MissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/agent")
 public class AgentController {
+
+    @Autowired
+    private MissionService missionService;
 
     @Autowired
     private AgentService agentService;
@@ -61,8 +65,7 @@ public class AgentController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteAgentById(@PathVariable Long id) {
 
-        //DELETE ALL MISSIONS WITH THIS AGENT's ID...
-
+        this.missionService.removeAllMissionsByAgentId(id);
         this.agentService.removeAgentById(id);
 
         return ResponseEntity.noContent().build();
