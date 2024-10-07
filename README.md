@@ -1,4 +1,4 @@
-# Intelligent Car
+# Smart Car
 
 ## Table of contents
 1. [Introduction](#introduction)
@@ -12,7 +12,16 @@
 This project integrates diverse skills such as IoT, machine learning, and more to create a system where a car is autonomously controlled by a machine learning model. The focus is on showcasing how these technologies can work together to enable intelligent, automated vehicle management.
 
 ## Car Components <a name="car-components"></a>
-...
+Car components used in the project:
+- 4x DC motors 48:1 (3V-6V),
+- 4x Mecanum wheels 48: 1,
+- 2x L298N motor driver,
+- Male/Female cable sets,
+- LiDAR DTOF LD19 - 360 degree,
+- Microcontroller ESP32-S3,
+- USB type-C cable,
+- Power source().
+
 
 ## ESP32 Pins <a name="esp32-pins"></a>
 ...
