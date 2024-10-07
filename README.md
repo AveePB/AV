@@ -8,7 +8,7 @@
 6. [How to use it](#how-to-use-it)
    
 ## Introduction <a name="introduction"></a>
-...
+This project combines multiple skills like IoT, machine learning and others. It's all about the car that is controlled using the ML model.  
 
 ## Car Components <a name="car-components"></a>
 ...
