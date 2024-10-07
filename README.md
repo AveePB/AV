@@ -4,7 +4,8 @@
 1. [Introduction](#introduction)
 2. [Car Components](#car-components)
 3. [ESP32 Pins](#esp32-pins)
-
+4. [How to use it](#how-to-use-it)
+   
 ## Introduction <a name="introduction"></a>
 ...
 
