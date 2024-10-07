@@ -4,16 +4,20 @@
 1. [Introduction](#introduction)
 2. [Car Components](#car-components)
 3. [ESP32 Pins](#esp32-pins)
-4. [How to use it](#how-to-use-it)
+4. [Mecanum Wheels Movement](#mecanum-wheels-movement)
+6. [How to use it](#how-to-use-it)
    
 ## Introduction <a name="introduction"></a>
 ...
 
-## Container Overview <a name="car-components"></a>
+## Car Components <a name="car-components"></a>
 ...
 
 ## ESP32 Pins <a name="esp32-pins"></a>
 ...
 
-## How to use it
+## Mecanum Wheels Movement <a name="mecanum-wheels-movement"></a>
+...
+
+## How to use it <a name="how-to-use-it"></a>
 ...
