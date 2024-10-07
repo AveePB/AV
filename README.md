@@ -8,7 +8,7 @@
 6. [How to use it](#how-to-use-it)
    
 ## Introduction <a name="introduction"></a>
-This project combines multiple skills like IoT, machine learning and others. It's all about the car that is controlled using the ML model.  
+This project integrates diverse skills such as IoT, machine learning, and more to create a system where a car is autonomously controlled by a machine learning model. The focus is on showcasing how these technologies can work together to enable intelligent, automated vehicle management.
 
 ## Car Components <a name="car-components"></a>
 ...
