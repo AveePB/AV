@@ -2,7 +2,7 @@
 
 ## Table of contents
 1. [Introduction](#introduction)
-2. [Car Components](#car-components)
+2. [Electronic Components](#car-components)
 3. [ESP32 Pins](#esp32-pins)
 4. [Mecanum Wheels Movement](#mecanum-wheels-movement)
 5. [Machine Learning Model](#machine-learning-model)
