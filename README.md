@@ -13,8 +13,6 @@
 This project integrates diverse skills such as IoT, machine learning, and more to create a system where a car is autonomously controlled by a machine learning model. The focus is on showcasing how these technologies can work together to enable intelligent, automated vehicle management.
 
 ## Electronic Components <a name="car-components"></a>
-# Components Table
-
 | Image                                   | Component Name     | Quantity |
 |-----------------------------------------|--------------------|----------|
 | <img src="imgs/raspberry-pi.png" width="100" /> | Raspberry Pi 5 | 1 |
