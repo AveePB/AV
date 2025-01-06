@@ -17,9 +17,15 @@ This project integrates diverse skills such as IoT, machine learning, and more t
 
 | Image                                   | Component Name     | Quantity |
 |-----------------------------------------|--------------------|----------|
-| <img src="imgs/l298n.png" width="100" />    | L298N motor driver | 2        |
-| <img src="image2.png" width="100" />    | Component 2        | 5        |
-| <img src="image3.png" width="100" />    | Component 3        | 20       |
+| <img src="imgs/raspberry-pi.png" width="100" /> | Raspberry Pi 5 | 1 |
+| <img src="imgs/raspberry-pi-ups.png" width="100" /> | Raspberry Pi 5 UPS | 1 |
+| <img src="imgs/rplidar.png" width="100" /> | RPLidar A1M8 | 1 |
+| <img src="imgs/18650-battery-holder.png" width="100" /> | 18650 battery holder (3 slots) | 1 |
+| <img src="imgs/18650-battery.png" width="100" /> | 18650 battery | 5 |
+| <img src="imgs/l298n.png" width="100" /> | L298N motor driver | 2 |
+| <img src="imgs/dc-motor.png" width="100" /> | DC motor 6V (48 : 1) | 4 |
+| <img src="imgs/jumper-wires.png" width="100" /> | Jumper wires female to female | 1 (set) |
+
 
 
 ## Raspberry Pi Pins <a name="raspberry-pins"></a>
