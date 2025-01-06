@@ -3,7 +3,7 @@
 ## Table of contents
 1. [Introduction](#introduction)
 2. [Electronic Components](#car-components)
-3. [ESP32 Pins](#esp32-pins)
+3. [Raspberry Pi Pins](#raspberry-pins)
 4. [Mecanum Wheels Movement](#mecanum-wheels-movement)
 5. [Web Application](#web-application)
 6. [Machine Learning Model](#machine-learning-model)
@@ -15,7 +15,7 @@ This project integrates diverse skills such as IoT, machine learning, and more t
 ## Electronic Components <a name="car-components"></a>
 ...
 
-## ESP32 Pins <a name="esp32-pins"></a>
+## Raspberry Pi Pins <a name="raspberry-pins"></a>
 ...
 
 ## Mecanum Wheels Movement <a name="mecanum-wheels-movement"></a>
