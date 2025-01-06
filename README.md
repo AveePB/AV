@@ -57,4 +57,4 @@ Movements to any directions: blue: wheel drive direction; red: vehicle moving di
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Partnership
-Project was founded by <a href="https://www.facebook.com/sknsepgliwice/?locale=pl_PL"> the SKN SEP</a>
+Project was founded by <a href="https://www.facebook.com/sknsepgliwice/?locale=pl_PL"> the SKN SEP</a>.
