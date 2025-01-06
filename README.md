@@ -8,6 +8,8 @@
 5. [Web Application](#web-application)
 6. [Machine Learning Model](#machine-learning-model)
 7. [How to use it](#how-to-use-it)
+8. [License](#license)
+9. [Partnership](#partnership)
    
 ## Introduction <a name="introduction"></a>
 This project integrates diverse skills such as IoT, machine learning, and more to create a system where a car is autonomously controlled by a machine learning model. The focus is on showcasing how these technologies can work together to enable intelligent, automated vehicle management.
@@ -24,8 +26,6 @@ This project integrates diverse skills such as IoT, machine learning, and more t
 | <img src="imgs/l298n.png" width="100" /> | L298N motor driver | 2 |
 | <img src="imgs/dc-motor.png" width="100" /> | DC motor 6V (48 : 1) | 4 |
 | <img src="imgs/jumper-wires.png" width="100" /> | Jumper wires female to female | 1 (set) |
-
-
 
 ## Raspberry Pi Pins <a name="raspberry-pins"></a>
 ...
@@ -52,3 +52,9 @@ Movements to any directions: blue: wheel drive direction; red: vehicle moving di
 
 ## How to use it <a name="how-to-use-it"></a>
 ...
+
+## License <a name="license"></a>
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Partnership
+Project was founded by <a href="https://www.facebook.com/sknsepgliwice/?locale=pl_PL"> the SKN SEP</a>
