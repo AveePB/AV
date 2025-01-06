@@ -17,6 +17,7 @@ This project integrates diverse skills such as IoT, machine learning, and more t
 |-----------------------------------------|--------------------|----------|
 | <img src="imgs/raspberry-pi.png" width="100" /> | Raspberry Pi 5 | 1 |
 | <img src="imgs/raspberry-pi-ups.png" width="100" /> | Raspberry Pi 5 UPS | 1 |
+| <img src="imgs/raspberry-pi-camera.png" width="100" /> | Raspberry Pi Camera HD v3 12MPx | 1 |
 | <img src="imgs/rplidar.png" width="100" /> | RPLidar A1M8 | 1 |
 | <img src="imgs/18650-battery-holder.png" width="100" /> | 18650 battery holder (3 slots) | 1 |
 | <img src="imgs/18650-battery.png" width="100" /> | 18650 battery | 5 |
