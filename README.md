@@ -3,7 +3,7 @@
 ## Table of contents
 1. [Introduction](#introduction)
 2. [Electronic Components](#car-components)
-3. [Raspberry Pi Pins](#raspberry-pins)
+3. [Raspberry Pi Pinout](#raspberry-pinout)
 4. [Mecanum Wheels Movement](#mecanum-wheels-movement)
 5. [Web Application](#web-application)
 6. [Machine Learning Model](#machine-learning-model)
@@ -27,7 +27,7 @@ This project integrates diverse skills such as IoT, machine learning, and more t
 | <img src="imgs/dc-motor.png" width="100" /> | DC motor 6V (48 : 1) | 4 |
 | <img src="imgs/jumper-wires.png" width="100" /> | Jumper wires female to female | 1 (set) |
 
-## Raspberry Pi Pins <a name="raspberry-pins"></a>
+## Raspberry Pi Pinout <a name="raspberry-pinout"></a>
 ...
 
 ## Mecanum Wheels Movement <a name="mecanum-wheels-movement"></a>
