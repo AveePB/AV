@@ -42,5 +42,6 @@ def cleanUpGPIO():
 
     This function resets all GPIO pins and releases resources.
     """
+    
     GPIO.cleanup()
     
