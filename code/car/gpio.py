@@ -18,7 +18,7 @@ def initializeGPIO():
     It also ensures all pins start in a LOW state.
     """
 
-    GPIO.setmode(GPIO.BCM)  # Turn on GPIO
+    GPIO.setmode(GPIO.BOARD)  # Turn on GPIO
 
     # Set up forward motor pins
     GPIO.setup(F_IN1, GPIO.OUT); GPIO.output(F_IN1, GPIO.LOW)

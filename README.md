@@ -28,7 +28,7 @@ This project integrates diverse skills such as IoT, machine learning, and more t
 | <img src="imgs/jumper-wires.png" width="100" /> | Jumper wires female to female | 1 (set) |
 
 ## Raspberry Pi Pinout <a name="raspberry-pinout"></a>
-...
+<img src="./imgs/pinout.png" alt="raspberry-pi-pinout">
 
 ## Mecanum Wheels Movement <a name="mecanum-wheels-movement"></a>
 <img src="./imgs/mecanum-wheel-controls.svg" alt="mecanum-wheel-controls"/>
