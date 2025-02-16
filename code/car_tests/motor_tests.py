@@ -19,6 +19,8 @@ class TestMotorFunctions(unittest.TestCase):
     It shows how well it performs during pressure.
     """
 
+    TIME = 4 # Motor spining time (seconds)
+
     def test_forward(self):
         """
         Tests how change (to forward directory) impacts the motor.
@@ -29,18 +31,23 @@ class TestMotorFunctions(unittest.TestCase):
         # Intitialize motor
         motor = Motor(F_ENA, F_IN1, F_IN2)
         self.assertIs(motor.getDirection(), Direction.NONE)
+        
+        print("Motor initialized")
+        time.sleep(self.TIME)
 
         # Motor spins forward
         motor.forward()
         self.assertIs(motor.getDirection(), Direction.FORWARD)
 
-        time.sleep(2)
+        print("Motor spins forward")
+        time.sleep(self.TIME)
 
         # Motor spins backward
         motor.backward()
         self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
-        time.sleep(2)
+        print("Motor spins backward")
+        time.sleep(self.TIME)
 
         # Motor stops spining
         motor.stop()
@@ -59,23 +66,29 @@ class TestMotorFunctions(unittest.TestCase):
         motor = Motor(F_ENA, F_IN1, F_IN2)
         self.assertIs(motor.getDirection(), Direction.NONE)
 
+        print("Motor initialized")
+        time.sleep(self.TIME)
+
         # Motor spins backward
         motor.backward()
         self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
-        time.sleep(2)
+        print("Motor spins backward")
+        time.sleep(self.TIME)
 
         # Motor spins forward
         motor.forward()
         self.assertIs(motor.getDirection(), Direction.FORWARD)
 
-        time.sleep(2)
+        print("Motor spins forward")
+        time.sleep(self.TIME)
 
         # Motor spins backward
         motor.backward()
         self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
-        time.sleep(2)
+        print("Motor spins backward")
+        time.sleep(self.TIME)
 
         # Motor stops spining
         motor.stop()
@@ -94,23 +107,29 @@ class TestMotorFunctions(unittest.TestCase):
         motor = Motor(F_ENA, F_IN1, F_IN2)
         self.assertIs(motor.getDirection(), Direction.NONE)
 
+        print("Motor initialized")
+        time.sleep(self.TIME)
+
         # Motor spins forward
         motor.forward()
         self.assertIs(motor.getDirection(), Direction.FORWARD)
 
-        time.sleep(2)
+        print("Motor spins forward")
+        time.sleep(self.TIME)
 
         # Motor stops spining
         motor.stop()
         self.assertIs(motor.getDirection(), Direction.NONE)
 
-        time.sleep(2)
+        print("Motor stops spining")
+        time.sleep(self.TIME)
 
         # Motor spins backward
         motor.backward()
         self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
-        time.sleep(2)
+        print("Motor spins backward")
+        time.sleep(self.TIME)
 
         # Motor stops spining
         motor.stop()

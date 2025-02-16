@@ -85,7 +85,6 @@ class Motor:
 
         self.__pwm.ChangeDutyCycle(MOTOR_SPEED)
 
-
     def stop(self):
         """
         Function changes motor directory to none.
