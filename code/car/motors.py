@@ -99,3 +99,10 @@ class Motor:
         GPIO.output(self.__in2, GPIO.LOW)
 
         self.__pwm.ChangeDutyCycle(0)
+
+    def getDirection(self) -> Direction:
+        """
+        Getter method that returns motor's direction.
+        """
+
+        return self.__direction

@@ -28,23 +28,23 @@ class TestMotorFunctions(unittest.TestCase):
 
         # Intitialize motor
         motor = Motor(F_ENA, F_IN1, F_IN2)
-        self.assertIs(motor.__direction, Direction.NONE)
+        self.assertIs(motor.getDirection(), Direction.NONE)
 
         # Motor spins forward
         motor.forward()
-        self.assertIs(motor.__direction, Direction.FORWARD)
+        self.assertIs(motor.getDirection(), Direction.FORWARD)
 
         time.sleep(2)
 
         # Motor spins backward
         motor.backward()
-        self.assertIs(motor.__direction, Direction.BACKWARD)
+        self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
         time.sleep(2)
 
         # Motor stops spining
         motor.stop()
-        self.assertIs(motor.__direction, Direction.NONE)
+        self.assertIs(motor.getDirection(), Direction.NONE)
 
         cleanUpGPIO()
 
@@ -57,29 +57,29 @@ class TestMotorFunctions(unittest.TestCase):
 
         # Intitialize motor
         motor = Motor(F_ENA, F_IN1, F_IN2)
-        self.assertIs(motor.__direction, Direction.NONE)
+        self.assertIs(motor.getDirection(), Direction.NONE)
 
         # Motor spins backward
         motor.backward()
-        self.assertIs(motor.__direction, Direction.BACKWARD)
+        self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
         time.sleep(2)
 
         # Motor spins forward
         motor.forward()
-        self.assertIs(motor.__direction, Direction.FORWARD)
+        self.assertIs(motor.getDirection(), Direction.FORWARD)
 
         time.sleep(2)
 
         # Motor spins backward
         motor.backward()
-        self.assertIs(motor.__direction, Direction.BACKWARD)
+        self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
         time.sleep(2)
 
         # Motor stops spining
         motor.stop()
-        self.assertIs(motor.__direction, Direction.NONE)
+        self.assertIs(motor.getDirection(), Direction.NONE)
         
         cleanUpGPIO()
 
@@ -92,29 +92,29 @@ class TestMotorFunctions(unittest.TestCase):
 
         # Intitialize motor
         motor = Motor(F_ENA, F_IN1, F_IN2)
-        self.assertIs(motor.__direction, Direction.NONE)
+        self.assertIs(motor.getDirection(), Direction.NONE)
 
         # Motor spins forward
         motor.forward()
-        self.assertIs(motor.__direction, Direction.FORWARD)
+        self.assertIs(motor.getDirection(), Direction.FORWARD)
 
         time.sleep(2)
 
         # Motor stops spining
         motor.stop()
-        self.assertIs(motor.__direction, Direction.NONE)
+        self.assertIs(motor.getDirection(), Direction.NONE)
 
         time.sleep(2)
 
         # Motor spins backward
         motor.backward()
-        self.assertIs(motor.__direction, Direction.BACKWARD)
+        self.assertIs(motor.getDirection(), Direction.BACKWARD)
 
         time.sleep(2)
 
         # Motor stops spining
         motor.stop()
-        self.assertIs(motor.__direction, Direction.NONE)
+        self.assertIs(motor.getDirection(), Direction.NONE)
 
         cleanUpGPIO()
 
