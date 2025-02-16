@@ -76,7 +76,7 @@ class Motor:
         Function changes motor directory to backward.
         """
 
-        if (self.__direction is Direction.BACkWARD): return
+        if (self.__direction is Direction.BACKWARD): return
 
         # Update input pins
         self.__direction = Direction.BACKWARD
