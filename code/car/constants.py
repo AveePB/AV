@@ -14,12 +14,12 @@ F_ENA = 40  # Forward Enable pin A
 F_ENB = 33  # Forward Enable pin B
 
 # Backward motor control pins
-B_IN1 = 24  # Backward input 1
-B_IN2 = 22  # Backward input 2
-B_IN3 = _  # Backward input 3
-B_IN4 = _  # Backward input 4
-B_ENA = 26  # Backward Enable pin A
-B_ENB = _  # Backward Enable pin B
+B_IN1 = 16  # Backward input 1
+B_IN2 = 12  # Backward input 2
+B_IN3 = 15  # Backward input 3
+B_IN4 = 13 # Backward input 4
+B_ENA = 18  # Backward Enable pin A
+B_ENB = 11  # Backward Enable pin B
 
 # Default motor duty cycle
 MOTOR_PWM = 250
