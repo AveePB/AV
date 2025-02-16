@@ -9,6 +9,7 @@ import unittest
 import time
 from car.motors import Motor, Direction
 from car.constants import F_ENA, F_IN1, F_IN2
+from car.gpio import initializeGPIO, cleanUpGPIO
 
 class TestMotorFunctions(unittest.TestCase):
     """
@@ -23,6 +24,8 @@ class TestMotorFunctions(unittest.TestCase):
         Tests how change (to forward directory) impacts the motor.
         """
 
+        initializeGPIO()
+
         # Intitialize motor
         motor = Motor(F_ENA, F_IN1, F_IN2)
         self.assertIs(motor.__direction, Direction.NONE)
@@ -42,12 +45,16 @@ class TestMotorFunctions(unittest.TestCase):
         # Motor stops spining
         motor.stop()
         self.assertIs(motor.__direction, Direction.NONE)
+
+        cleanUpGPIO()
 
     def test_backward(self):
         """
         Tests how change (to backward directory) impacts the motor.
         """
 
+        initializeGPIO()
+
         # Intitialize motor
         motor = Motor(F_ENA, F_IN1, F_IN2)
         self.assertIs(motor.__direction, Direction.NONE)
@@ -73,12 +80,16 @@ class TestMotorFunctions(unittest.TestCase):
         # Motor stops spining
         motor.stop()
         self.assertIs(motor.__direction, Direction.NONE)
+        
+        cleanUpGPIO()
 
     def test_stop(self):
         """
         Tests how change (to stop) impacts the motor.
         """
 
+        initializeGPIO()
+
         # Intitialize motor
         motor = Motor(F_ENA, F_IN1, F_IN2)
         self.assertIs(motor.__direction, Direction.NONE)
@@ -104,6 +115,8 @@ class TestMotorFunctions(unittest.TestCase):
         # Motor stops spining
         motor.stop()
         self.assertIs(motor.__direction, Direction.NONE)
+
+        cleanUpGPIO()
 
 if (__name__ == '__main__'):
     unittest.main()
