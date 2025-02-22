@@ -60,7 +60,8 @@ class MotorControl:
         """
 
         self.__movement = Movement.NONE
-        self.__FL_motor = Motor(F_ENA, F_IN1, F_IN2)
+        self.__FL_motor = Motor(F_ENB, F_IN3, F_IN4)
+        self.__FR_motor = Motor(F_ENA, F_IN1, F_IN2)
         #self.__FR_motor = Motor()
         #self.__BL_motor = Motor()
         #self.__BR_motor = Motor()
