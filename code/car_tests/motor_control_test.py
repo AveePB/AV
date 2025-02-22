@@ -27,13 +27,67 @@ class TestMotorControlFunctions(unittest.TestCase):
 
         initializeGPIO()
 
-        # Initialize rhe motor controll
+        # Initialize the motor control
         driveSystem = MotorControl()
         
         # Move forward
         driveSystem.moveForward()
         
         print("Car moves forward")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+
+    def test_move_backward(self):
+        """
+        Tests how car moves backwad.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move backward
+        driveSystem.moveBackward()
+        
+        print("Car moves backward")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+
+    def test_move_left(self):
+        """
+        Tests how car moves left.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.moveLeft()
+        
+        print("Car moves left")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+
+    def test_move_right(self):
+        """
+        Tests how car moves right.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.moveRight()
+        
+        print("Car moves right")
         time.sleep(self.TIME)
 
         cleanUpGPIO()
