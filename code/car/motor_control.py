@@ -63,13 +63,14 @@ class MotorControl:
         self.__FL_motor = Motor(F_ENB, F_IN3, F_IN4)
         self.__FR_motor = Motor(F_ENA, F_IN1, F_IN2)
         self.__BL_motor = Motor(B_ENA, B_IN1, B_IN2)
-        #self.__BR_motor = Motor()
+        self.__BR_motor = Motor(B_ENB, B_IN3, B_IN4)
 
     def moveForward(self):
         """
         Function changes movement of car to forward.
         """
 
-        #self.__FL_motor.forward()
-        #self.__FR_motor.forward()
+        self.__FL_motor.forward()
+        self.__FR_motor.forward()
         self.__BL_motor.forward()
+        self.__BR_motor.forward()
