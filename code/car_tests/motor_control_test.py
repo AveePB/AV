@@ -37,3 +37,6 @@ class TestMotorControlFunctions(unittest.TestCase):
         time.sleep(self.TIME)
 
         cleanUpGPIO()
+
+if (__name__ == '__main__'):
+    unittest.main()
