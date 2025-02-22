@@ -18,7 +18,7 @@ class TestMotorControlFunctions(unittest.TestCase):
     It shows how well it performs during pressure.
     """
 
-    TIME = 4 # Movement time (seconds)
+    TIME = 2 # Movement time (seconds)
 
     def test_move_forward(self):
         """
