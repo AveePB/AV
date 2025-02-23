@@ -66,7 +66,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Move left
         driveSystem.moveLeft()
         
         print("Car moves left")
@@ -84,7 +84,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Move right
         driveSystem.moveRight()
         
         print("Car moves right")
@@ -102,7 +102,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Move top-left
         driveSystem.moveTopLeft()
         
         print("Car moves top-left")
@@ -120,7 +120,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Move top-right
         driveSystem.moveTopRight()
         
         print("Car moves top-right")
@@ -138,7 +138,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Move bottom-left
         driveSystem.moveBottomLeft()
         
         print("Car moves bottom-left")
@@ -156,7 +156,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Move bottom-right
         driveSystem.moveBottomRight()
         
         print("Car moves bottom-right")
@@ -174,7 +174,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Turn right
         driveSystem.turnRight()
         
         print("Car turns right")
@@ -192,12 +192,48 @@ class TestMotorControlFunctions(unittest.TestCase):
         # Initialize the motor control
         driveSystem = MotorControl()
         
-        # Move forward
+        # Turn left
         driveSystem.turnLeft()
         
         print("Car turns left")
         time.sleep(self.TIME)
 
+        cleanUpGPIO()
+
+    def test_square(self):
+        """
+        Tests how car draws square.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move right
+        driveSystem.moveRight()
+        
+        print("Car moves right")
+        time.sleep(self.TIME)
+
+        # Move backward
+        driveSystem.moveBackward()
+
+        print("Car moves backward")
+        time.sleep(self.TIME)
+
+        # Move left
+        driveSystem.moveLeft()
+        
+        print("Car moves left")
+        time.sleep(self.TIME)
+
+        # Move forward
+        driveSystem.moveForward()
+
+        print("Car moves forward")
+        time.sleep(self.TIME)
+        
         cleanUpGPIO()
 
 if (__name__ == '__main__'):
