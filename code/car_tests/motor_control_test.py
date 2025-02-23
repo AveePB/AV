@@ -92,5 +92,77 @@ class TestMotorControlFunctions(unittest.TestCase):
 
         cleanUpGPIO()
 
+    def test_move_top_left(self):
+        """
+        Tests how car moves top-left.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.moveTopLeft()
+        
+        print("Car moves top-left")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+    
+    def test_move_top_right(self):
+        """
+        Tests how car moves top-right.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.moveTopRight()
+        
+        print("Car moves top-right")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+
+    def test_move_bottom_left(self):
+        """
+        Tests how car moves bottom-left.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.moveBottomLeft()
+        
+        print("Car moves bottom-left")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+
+    def test_move_bottom_right(self):
+        """
+        Tests how car moves bottom-right.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.moveBottomRight()
+        
+        print("Car moves bottom-right")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+
 if (__name__ == '__main__'):
     unittest.main()

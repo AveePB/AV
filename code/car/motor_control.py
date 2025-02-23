@@ -104,3 +104,35 @@ class MotorControl:
         self.__FR_motor.backward()
         self.__BL_motor.backward()
         self.__BR_motor.forward()
+    
+    def moveTopLeft(self):
+        """
+        Function changes movement of car to top-left.
+        """
+
+        self.__FL_motor.forward()
+        self.__BR_motor.forward()
+    
+    def moveBottomRight(self):
+        """
+        Function changes movement of car to bottom-right.
+        """
+
+        self.__FL_motor.backward()
+        self.__BR_motor.backward()
+
+    def moveTopRight(self):
+        """
+        Function changes movement of car to top-right.
+        """
+
+        self.__FR_motor.forward()
+        self.__BL_motor.forward()
+
+    def moveBottomLeft(self):
+        """
+        Function changes movement of car to bottom-left.
+        """
+
+        self.__FR_motor.backward()
+        self.__BL_motor.backward()
