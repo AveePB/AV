@@ -163,6 +163,42 @@ class TestMotorControlFunctions(unittest.TestCase):
         time.sleep(self.TIME)
 
         cleanUpGPIO()
+    
+    def test_turn_right(self):
+        """
+        Tests how car turns right.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.turnRight()
+        
+        print("Car turns right")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
+    
+    def test_turn_left(self):
+        """
+        Tests how car turns left.
+        """
+
+        initializeGPIO()
+
+        # Initialize the motor control
+        driveSystem = MotorControl()
+        
+        # Move forward
+        driveSystem.turnLeft()
+        
+        print("Car turns left")
+        time.sleep(self.TIME)
+
+        cleanUpGPIO()
 
 if (__name__ == '__main__'):
     unittest.main()
