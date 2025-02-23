@@ -24,7 +24,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves forwad.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -42,7 +42,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves backwad.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -60,7 +60,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves left.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -78,7 +78,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves right.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -96,7 +96,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves top-left.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -114,7 +114,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves top-right.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -132,7 +132,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves bottom-left.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -150,7 +150,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car moves bottom-right.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -168,7 +168,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car turns right.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -186,7 +186,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car turns left.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -204,7 +204,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         """
         Tests how car draws square.
         """
-
+        time.sleep(self.TIME*4)
         initializeGPIO()
 
         # Initialize the motor control
@@ -233,7 +233,7 @@ class TestMotorControlFunctions(unittest.TestCase):
 
         print("Car moves forward")
         time.sleep(self.TIME)
-        
+
         cleanUpGPIO()
 
 if (__name__ == '__main__'):
