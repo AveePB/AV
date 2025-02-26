@@ -55,7 +55,8 @@ class Motor:
             Destroys and stops the motor.
         """
 
-        self.__pwm.stop()
+        self.__pwm.ChangeDutyCycle(0)
+        self.__pwm.ChangeFrequence(0)
 
     def forward(self):
         """
