@@ -156,3 +156,13 @@ class MotorControl:
         self.__BL_motor.backward()
         self.__FR_motor.forward()
         self.__BR_motor.forward()
+
+    def cleanUpPWM(self):
+        """
+        Function used to turn off PWM communication of motors.
+        """
+
+        self.__FL_motor.stopPWM()
+        self.__BL_motor.stopPWM()
+        self.__FR_motor.stopPWM()
+        self.__BR_motor.stopPWM()

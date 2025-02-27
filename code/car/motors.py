@@ -50,14 +50,6 @@ class Motor:
         self.__in1 = in1
         self.__in2 = in2
 
-    def __del__(self):
-        """
-            Destroys and stops the motor.
-        """
-
-        self.__pwm.ChangeDutyCycle(0)
-        self.__pwm.ChangeFrequence(0)
-
     def forward(self):
         """
         Function changes motor directory to forward.
@@ -106,3 +98,11 @@ class Motor:
         """
 
         return self.__direction
+    
+    def stopPWM(self):
+        """
+        Function used to safely turn off PWM communication.
+        """
+
+        self.__pwm.ChangeDutyCycle(0)
+        self.__pwm.ChangeFrequence(0)

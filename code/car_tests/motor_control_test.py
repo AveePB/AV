@@ -36,6 +36,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves forward")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
     def test_move_backward(self):
@@ -54,6 +55,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves backward")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
     def test_move_left(self):
@@ -72,6 +74,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves left")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
     def test_move_right(self):
@@ -90,6 +93,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves right")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
     def test_move_top_left(self):
@@ -108,6 +112,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves top-left")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
     
     def test_move_top_right(self):
@@ -126,6 +131,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves top-right")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
     def test_move_bottom_left(self):
@@ -144,6 +150,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves bottom-left")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
     def test_move_bottom_right(self):
@@ -162,6 +169,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves bottom-right")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
     
     def test_turn_right(self):
@@ -180,6 +188,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car turns right")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
     
     def test_turn_left(self):
@@ -198,6 +207,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car turns left")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
     def test_square(self):
@@ -234,6 +244,7 @@ class TestMotorControlFunctions(unittest.TestCase):
         print("Car moves forward")
         time.sleep(self.TIME)
 
+        driveSystem.cleanUpPWM()
         cleanUpGPIO()
 
 if (__name__ == '__main__'):

@@ -53,6 +53,7 @@ class TestMotorFunctions(unittest.TestCase):
         motor.stop()
         self.assertIs(motor.getDirection(), Direction.NONE)
 
+        motor.stopPWM()
         cleanUpGPIO()
 
     def test_backward(self):
@@ -94,6 +95,7 @@ class TestMotorFunctions(unittest.TestCase):
         motor.stop()
         self.assertIs(motor.getDirection(), Direction.NONE)
         
+        motor.stopPWM()
         cleanUpGPIO()
 
     def test_stop(self):
@@ -135,6 +137,7 @@ class TestMotorFunctions(unittest.TestCase):
         motor.stop()
         self.assertIs(motor.getDirection(), Direction.NONE)
 
+        motor.stopPWM()
         cleanUpGPIO()
 
 if (__name__ == '__main__'):
