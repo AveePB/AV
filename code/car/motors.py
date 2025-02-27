@@ -104,5 +104,3 @@ class Motor:
         Function used to safely turn off PWM communication.
         """
         self.__pwm.stop()
-        #self.__pwm.ChangeDutyCycle(0)
-        #self.__pwm.ChangeFrequence(0)
