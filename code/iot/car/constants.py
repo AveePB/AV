@@ -26,3 +26,8 @@ MOTOR_PWM = 250
 
 # Deafult motor speed
 MOTOR_SPEED = 40
+
+# Camera configuration
+RAW_IMG_SIZE = (1920, 1080)
+IMG_SIZE = (1280, 720) 
+IMG_FORMAT = 'RGB888'
