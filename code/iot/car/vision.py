@@ -20,9 +20,9 @@ class Camera:
         Initializes the Camera object with the default arguments (constants).
         """
 
-        self.picam = Picamera2()
-        self.picam.configure(
-            self.picam.create_preview_configuration(
+        self.__picam = Picamera2()
+        self.__picam.configure(
+            self.__picam.create_preview_configuration(
                 raw={'size': RAW_IMG_SIZE}, 
                 main={'format': IMG_FORMAT, 'size': IMG_SIZE}
             ))
@@ -34,6 +34,6 @@ class Camera:
         and is returned.
         """
 
-        return self.picam.capture_array()
+        return self.__picam.capture_array()
     
     
