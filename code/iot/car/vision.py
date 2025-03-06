@@ -22,7 +22,7 @@ class Camera:
 
         self.__picam = Picamera2()
         self.__picam.configure(
-            self.__picam.create_preview_configuration(
+            self.__picam.create_video_configuration(
                 raw={'size': RAW_IMG_SIZE}, 
                 main={'format': IMG_FORMAT, 'size': IMG_SIZE}
             ))
