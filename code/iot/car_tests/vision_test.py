@@ -24,7 +24,7 @@ class TestCamera(unittest.TestCase):
         cv2.imshow("Test of taking a picture", img)
         
         # Close window
-        time.sleep(self.TIME)
+        cv2.waitKey(0)
         cv2.destroyAllWindows()
 
 if (__name__ == '__main__'):
