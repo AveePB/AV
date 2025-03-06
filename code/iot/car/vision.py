@@ -26,7 +26,7 @@ class Camera:
                 raw={'size': RAW_IMG_SIZE}, 
                 main={'format': IMG_FORMAT, 'size': IMG_SIZE}
             ))
-        self.picam.start()
+        self.__picam.start()
 
     def getImage(self):
         """
