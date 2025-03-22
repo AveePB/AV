@@ -22,7 +22,6 @@
 | <img src="imgs/l298n.png" width="100" /> | L298N motor driver | 2 |
 | <img src="imgs/dc-motor.png" width="100" /> | DC motor 6V (48 : 1) | 4 |
 | <img src="imgs/jumper-wires.png" width="100" /> | Jumper wires female to female | 1 (set) |
-<img src="./imgs/pinout.png" alt="raspberry-pi-pinout">
 
 ## Chassis Assembly <a name="chassis-assembly"></a>
 ...
