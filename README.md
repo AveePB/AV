@@ -1,19 +1,15 @@
-# Autonomous Car
+# Autonomous Vehicle (AV)
 
 ## Table of contents
 1. [Introduction](#introduction)
-2. [Electronic Components](#car-components)
-3. [Raspberry Pi Pinout](#raspberry-pinout)
-4. [Mecanum Wheels Movement](#mecanum-wheels-movement)
-5. [Web Application](#web-application)
-6. [Machine Learning Model](#machine-learning-model)
-7. [How to use it](#how-to-use-it)
-8. [License](#license)
-9. [Partnership](#partnership)
+2. [Mecanum Wheels Movement](#mecanum-wheels-movement)
+3. [How to use it](#how-to-use-it)
+4. [License](#license)
+5. [Partnership](#partnership)
    
 ## Introduction <a name="introduction"></a>
 This project integrates diverse skills such as IoT, machine learning, and more to create a system where a car is autonomously controlled by a machine learning model. The focus is on showcasing how these technologies can work together to enable intelligent, automated vehicle management.
-
+<!-->
 ## Electronic Components <a name="car-components"></a>
 | Image                                   | Component Name     | Quantity |
 |-----------------------------------------|--------------------|----------|
@@ -26,9 +22,8 @@ This project integrates diverse skills such as IoT, machine learning, and more t
 | <img src="imgs/l298n.png" width="100" /> | L298N motor driver | 2 |
 | <img src="imgs/dc-motor.png" width="100" /> | DC motor 6V (48 : 1) | 4 |
 | <img src="imgs/jumper-wires.png" width="100" /> | Jumper wires female to female | 1 (set) |
-
-## Raspberry Pi Pinout <a name="raspberry-pinout"></a>
 <img src="./imgs/pinout.png" alt="raspberry-pi-pinout">
+<!-->
 
 ## Mecanum Wheels Movement <a name="mecanum-wheels-movement"></a>
 <img src="./imgs/mecanum-wheel-controls.svg" alt="mecanum-wheel-controls"/>
@@ -43,12 +38,6 @@ Movements to any directions: blue: wheel drive direction; red: vehicle moving di
 - d) Moving around a bend, 
 - e) Rotation, 
 - f) Rotation around the central point of one axle.
-
-## Web Application <a name="web-application"></a>
-...
-
-## Machine Learning Model <a name="machine-learning-model"></a>
-...
 
 ## How to use it <a name="how-to-use-it"></a>
 ...
