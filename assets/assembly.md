@@ -7,8 +7,8 @@
 4. [Car assembly](#car-assembly)
 5. [Raspberry pinout](#pi-pinout)
 
-## Introduction <a name="introduction">
-...
+## Introduction <a name="introduction"></a>
+The assembly process should be easy to follow. This guide is an universal standard for construction of AV. List of components is required to meet criteria, as is the pinout. The only thing, that can differ is the placement of electronic components.
 
 ## Electronic Components <a name="electronic-components"></a>
 | Image                                   | Component Name     | Quantity |
@@ -26,8 +26,17 @@
 ## Chassis Assembly <a name="chassis-assembly"></a>
 ...
 
+### Recommendendation
+...
+
+### Additional tuning
+...
+
 ## Car Assembly <a name="car-assembly"></a>
 ...
 
 ## Raspberry Pinout <a name="pi-pinout"></a>
+...
+
+### Description
 ...
