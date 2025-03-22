@@ -26,7 +26,7 @@ The assembly process should be easy to follow. This guide is an universal standa
 ## Chassis Assembly <a name="chassis-assembly"></a>
 ...
 
-### Recommendendation
+### Recommendation
 ...
 
 ### Additional tuning
