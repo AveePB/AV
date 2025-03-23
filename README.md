@@ -1,4 +1,5 @@
 # Autonomous Vehicle (AV)
+- <a href="./assets/assembly.md">Assembly Guide</a>
 
 ## Table of contents
 1. [Introduction](#introduction)
