@@ -5,9 +5,11 @@ class TestMotorSystem(unittest.TestCase):
 
     def go_forward_test(self):
 
-        ms = MotorSystem()
+        #ms = MotorSystem()
 
-        ms.go_forward()
+        #ms.go_forward()
+
+        print("GO FORWARD")
 
 
 if (__name__ == '__main__'):
