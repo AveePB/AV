@@ -22,28 +22,50 @@ class Maneuver(Enum):
     TURN_LEFT = 9
     TURN_RIGHT = 10
 
+class DCMotor(Motor):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+
+        self.__directon = MotorDirection.NONE
+
+    def moveForward(self):
+        if (self.__directon == MotorDirection.FORWARD): return
+
+        self.forward(MOTOR_SPEED)
+        self.__directon = MotorDirection.FORWARD
+
+    def moveBackward(self):
+        if (self.__directon == MotorDirection.BACKWARD): return
+
+        self.backward(MOTOR_SPEED)
+        self.__directon = MotorDirection.BACKWARD
+
+    def stopMovement(self):
+        if (self.__directon == MotorDirection.NONE): return
+
+        self.stop()
+        self.__directon = MotorDirection.NONE
+
 class MotorSystem:
 
     def __init__(self):
         """
         Constructor responsible for initializing all motors.
         """
-        self.__FL_motor = Motor(forward=F_IN3, backward=F_IN4, enable=F_ENB)
-        self.__FR_motor = Motor(forward=F_IN1, backward=F_IN2, enable=F_ENA)
-        self.__BL_motor = Motor(forward=B_IN1, backward=B_IN2, enable=B_ENA)
-        self.__BR_motor = Motor(forward=B_IN3, backward=B_IN4, enable=B_ENB)
-
-        self.__FL_mdir = MotorDirection.NONE
-        self.__FR_mdir = MotorDirection.NONE
-        self.__BL_mdir = MotorDirection.NONE
-        self.__BR_mdir = MotorDirection.NONE
+        self.__FL_motor = DCMotor(forward=F_IN3, backward=F_IN4, enable=F_ENB)
+        self.__FR_motor = DCMotor(forward=F_IN1, backward=F_IN2, enable=F_ENA)
+        self.__BL_motor = DCMotor(forward=B_IN1, backward=B_IN2, enable=B_ENA)
+        self.__BR_motor = DCMotor(forward=B_IN3, backward=B_IN4, enable=B_ENB)
 
         self.__maneuver = Maneuver.STOP
 
     def go_forward(self):
+        if (self.__maneuver == Maneuver.GO_FORWARD): return
+
+        self.__FL_motor.moveForward()
+        self.__FR_motor.moveForward()
+        self.__BL_motor.moveForward()
+        self.__BR_motor.moveForward()
         self.__maneuver = Maneuver.GO_FORWARD
 
-        self.__FL_motor.forward(MOTOR_SPEED)
-        self.__FR_motor.forward(MOTOR_SPEED)
-        self.__BL_motor.forward(MOTOR_SPEED)
-        self.__BR_motor.forward(MOTOR_SPEED)
