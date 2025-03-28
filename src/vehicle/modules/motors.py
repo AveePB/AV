@@ -114,10 +114,11 @@ class MotorSystem:
         """
         if (self.__maneuver == Maneuver.GO_LEFT): return
 
-        self.__FL_motor.forward()
-        self.__FR_motor.backward()
-        self.__BL_motor.backward()
-        self.__BR_motor.forward()
+        self.__FL_motor.backward()
+        self.__FR_motor.forward()
+        self.__BL_motor.forward()
+        self.__BR_motor.backward()
+
         self.__maneuver = Maneuver.GO_LEFT
     
     def go_right(self):
@@ -125,11 +126,12 @@ class MotorSystem:
             Changes the motors maneuver to right.
         """
         if (self.__maneuver == Maneuver.GO_RIGHT): return
+        
+        self.__FL_motor.forward()
+        self.__FR_motor.backward()
+        self.__BL_motor.backward()
+        self.__BR_motor.forward()
 
-        self.__FL_motor.backward()
-        self.__FR_motor.forward()
-        self.__BL_motor.forward()
-        self.__BR_motor.backward()
         self.__maneuver = Maneuver.GO_RIGHT
 
     
