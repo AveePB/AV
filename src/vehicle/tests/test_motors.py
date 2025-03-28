@@ -3,7 +3,7 @@ import unittest
 
 class TestMotorSystem(unittest.TestCase):
 
-    def go_forward_test(self):
+    def test_go_forward(self):
 
         #ms = MotorSystem()
 
