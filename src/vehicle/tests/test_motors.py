@@ -1,5 +1,6 @@
 from vehicle.modules.motors import MotorSystem
 import unittest
+import time
 
 class TestMotorSystem(unittest.TestCase):
 
@@ -8,6 +9,7 @@ class TestMotorSystem(unittest.TestCase):
         ms = MotorSystem()
 
         ms.go_forward()
+        time.sleep(4)       
 
         print("GO FORWARD")
 
