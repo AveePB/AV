@@ -43,7 +43,5 @@ class TestMotorSystem(unittest.TestCase):
         print("Maneuver completed.")
 
 
-
-
 if (__name__ == '__main__'):
     unittest.main()

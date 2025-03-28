@@ -32,31 +32,31 @@ class DCMotor(Motor):
 
         self.__directon = MotorDirection.NONE
 
-    def moveForward(self):
+    def forward(self):
         """
             Updates motor's spin direction to forward.
         """
         if (self.__directon == MotorDirection.FORWARD): return
 
-        self.forward(MOTOR_SPEED)
+        super().forward(MOTOR_SPEED)
         self.__directon = MotorDirection.FORWARD
 
-    def moveBackward(self):
+    def backward(self):
         """
             Updates motor's spin direction to backward.
         """
         if (self.__directon == MotorDirection.BACKWARD): return
 
-        self.backward(MOTOR_SPEED)
+        super().backward(MOTOR_SPEED)
         self.__directon = MotorDirection.BACKWARD
 
-    def stopMovement(self):
+    def stop(self):
         """
             Updates motor's spin direction to none.
         """
         if (self.__directon == MotorDirection.NONE): return
 
-        self.stop()
+        super().stop()
         self.__directon = MotorDirection.NONE
 
 class MotorSystem:
@@ -78,10 +78,10 @@ class MotorSystem:
         """
         if (self.__maneuver == Maneuver.STOP): return
 
-        self.__FL_motor.stopMovement()
-        self.__FR_motor.stopMovement()
-        self.__BL_motor.stopMovement()
-        self.__BR_motor.stopMovement()
+        self.__FL_motor.stop()
+        self.__FR_motor.stop()
+        self.__BL_motor.stop()
+        self.__BR_motor.stop()
         self.__maneuver = Maneuver.STOP
 
     def go_forward(self):
@@ -90,10 +90,10 @@ class MotorSystem:
         """
         if (self.__maneuver == Maneuver.GO_FORWARD): return
 
-        self.__FL_motor.moveForward()
-        self.__FR_motor.moveForward()
-        self.__BL_motor.moveForward()
-        self.__BR_motor.moveForward()
+        self.__FL_motor.forward()
+        self.__FR_motor.forward()
+        self.__BL_motor.forward()
+        self.__BR_motor.forward()
         self.__maneuver = Maneuver.GO_FORWARD
     
     def go_backward(self):
@@ -102,10 +102,10 @@ class MotorSystem:
         """
         if (self.__maneuver == Maneuver.GO_BACKWARD): return
 
-        self.__FL_motor.moveBackward()
-        self.__FR_motor.moveBackward()
-        self.__BL_motor.moveBackward()
-        self.__BR_motor.moveBackward()
+        self.__FL_motor.backward()
+        self.__FR_motor.backward()
+        self.__BL_motor.backward()
+        self.__BR_motor.backward()
         self.__maneuver = Maneuver.GO_BACKWARD
 
     def go_left(self):
@@ -114,10 +114,10 @@ class MotorSystem:
         """
         if (self.__maneuver == Maneuver.GO_LEFT): return
 
-        self.__FL_motor.moveForward()
-        self.__FR_motor.moveBackward()
-        self.__BL_motor.moveBackward()
-        self.__BR_motor.moveForward()
+        self.__FL_motor.forward()
+        self.__FR_motor.backward()
+        self.__BL_motor.backward()
+        self.__BR_motor.forward()
         self.__maneuver = Maneuver.GO_LEFT
     
     def go_right(self):
@@ -126,10 +126,10 @@ class MotorSystem:
         """
         if (self.__maneuver == Maneuver.GO_RIGHT): return
 
-        self.__FL_motor.moveBackward()
-        self.__FR_motor.moveForward()
-        self.__BL_motor.moveForward()
-        self.__BR_motor.moveBackward()
+        self.__FL_motor.backward()
+        self.__FR_motor.forward()
+        self.__BL_motor.forward()
+        self.__BR_motor.backward()
         self.__maneuver = Maneuver.GO_RIGHT
 
     
