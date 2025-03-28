@@ -1,8 +1,10 @@
-from gpiozero import Device, Motor
+from gpiozero.pins.native import NativeFactory
+from gpiozero import Motor
 from enum import Enum
 from vehicle.consts import *
 
 MOTOR_SPEED = 0.5
+NATIVE_FACTORY = NativeFactory()
 
 class MotorDirection(Enum):
     NONE = 0
@@ -53,10 +55,10 @@ class MotorSystem:
         """
         Constructor responsible for initializing all motors.
         """
-        self.__FL_motor = DCMotor(forward=F_IN3, backward=F_IN4, enable=F_ENB, pwm=True, pin_factory=Device.pin_factory)
-        self.__FR_motor = DCMotor(forward=F_IN1, backward=F_IN2, enable=F_ENA, pwm=True, pin_factory=Device.pin_factory)
-        self.__BL_motor = DCMotor(forward=B_IN1, backward=B_IN2, enable=B_ENA, pwm=True, pin_factory=Device.pin_factory)
-        self.__BR_motor = DCMotor(forward=B_IN3, backward=B_IN4, enable=B_ENB, pwm=True, pin_factory=Device.pin_factory)
+        self.__FL_motor = DCMotor(forward=F_IN3, backward=F_IN4, enable=F_ENB, pwm=True, pin_factory=NATIVE_FACTORY)
+        self.__FR_motor = DCMotor(forward=F_IN1, backward=F_IN2, enable=F_ENA, pwm=True, pin_factory=NATIVE_FACTORY)
+        self.__BL_motor = DCMotor(forward=B_IN1, backward=B_IN2, enable=B_ENA, pwm=True, pin_factory=NATIVE_FACTORY)
+        self.__BR_motor = DCMotor(forward=B_IN3, backward=B_IN4, enable=B_ENB, pwm=True, pin_factory=NATIVE_FACTORY)
 
         self.__maneuver = Maneuver.STOP
 
