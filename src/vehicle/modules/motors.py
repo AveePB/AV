@@ -72,6 +72,12 @@ class MotorSystem:
 
         self.__maneuver = Maneuver.STOP
 
+    """
+    Getter function, used to access private maneuver field value.
+    """
+    def get_maneuver(self):
+        return self.__maneuver
+
     def stop(self):
         """
             Changes the motors maneuver to stop.
@@ -134,5 +140,80 @@ class MotorSystem:
 
         self.__maneuver = Maneuver.GO_RIGHT
 
-    
+    def go_top_left(self):
+        """
+            Changes the motors maneuver to top left.
+        """
+        if (self.__maneuver == Maneuver.GO_TOP_LEFT): return
+        
+        self.__FL_motor.stop()
+        self.__FR_motor.forward()
+        self.__BL_motor.forward()
+        self.__BR_motor.stop()
 
+        self.__maneuver = Maneuver.GO_TOP_LEFT
+    
+    def go_top_right(self):
+        """
+            Changes the motors maneuver to top right.
+        """
+        if (self.__maneuver == Maneuver.GO_TOP_RIGHT): return
+        
+        self.__FL_motor.forward()
+        self.__FR_motor.stop()
+        self.__BL_motor.stop()
+        self.__BR_motor.forward()
+
+        self.__maneuver = Maneuver.GO_TOP_RIGHT
+
+    def go_bottom_left(self):
+        """
+            Changes the motors maneuver to bottom left.
+        """
+        if (self.__maneuver == Maneuver.GO_BOTTOM_LEFT): return
+        
+        self.__FL_motor.backward()
+        self.__FR_motor.stop()
+        self.__BL_motor.stop()
+        self.__BR_motor.backward()
+
+        self.__maneuver = Maneuver.GO_BOTTOM_LEFT
+
+    def go_bottom_right(self):
+        """
+            Changes the motors maneuver to bottom right.
+        """
+        if (self.__maneuver == Maneuver.GO_BOTTOM_RIGHT): return
+        
+        self.__FL_motor.stop()
+        self.__FR_motor.backward()
+        self.__BL_motor.backward()
+        self.__BR_motor.stop()
+
+        self.__maneuver = Maneuver.GO_BOTTOM_RIGHT
+
+    def turn_left(self):
+        """
+            Changes the motors maneuver to turn left.
+        """
+        if (self.__maneuver == Maneuver.TURN_LEFT): return
+        
+        self.__FL_motor.backward()
+        self.__FR_motor.forward()
+        self.__BL_motor.backward()
+        self.__BR_motor.forward()
+
+        self.__maneuver = Maneuver.TURN_LEFT
+    
+    def turn_right(self):
+        """
+            Changes the motors maneuver to turn right.
+        """
+        if (self.__maneuver == Maneuver.TURN_RIGHT): return
+        
+        self.__FL_motor.forward()
+        self.__FR_motor.backward()
+        self.__BL_motor.forward()
+        self.__BR_motor.backward()
+
+        self.__maneuver = Maneuver.TURN_RIGHT
