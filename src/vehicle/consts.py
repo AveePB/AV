@@ -21,7 +21,7 @@ MOTOR_SPEED = 0.5
 
 # Camera parameters
 IMG_FORMAT = 'RGB888'
-IMG_SIZE = (2560, 1920)
+IMG_SIZE = (1920, 1080)
 
 # Lidar USB header
 USB_HEADER = '...'
