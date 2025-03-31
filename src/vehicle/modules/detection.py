@@ -17,12 +17,12 @@ class Camera(Picamera2):
 
         self.configure(self.av_config)
     
-    def capture_array(self, stream='main'):
+    def capture_array(self):
         """
             Function used to take a picture from camera.
         """
 
-        img = super().capture_array(stream=stream)
+        img = super().capture_array('main')
         cv2.rotate(img, cv2.ROTATE_180) # Camera is flipped by 180 degrees
         
         return img
