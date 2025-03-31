@@ -4,7 +4,7 @@ import cv2
 
 class TestMotorSystem(unittest.TestCase):
 
-    TEST_TIME = 3 # seconds
+    TEST_TIME = 5 # seconds
 
     def test_capture_image(self):
         cam = Camera()
@@ -20,6 +20,7 @@ class TestMotorSystem(unittest.TestCase):
         # Create preview window
         cv2.namedWindow(winname)
         cv2.imshow(winname, img)
+        cv2.moveWindow(winname, 0, 0)
         cv2.waitKey(self.TEST_TIME * 1000) # wait x seconds
 
         # Turn off camera
