@@ -12,7 +12,7 @@ class Camera(Picamera2):
 
         self.av_config = self.create_still_configuration({
             "format": IMG_FORMAT,
-            "size": IMG_FORMAT
+            "size": IMG_SIZE
         })
 
         self.configure(self.av_config)
