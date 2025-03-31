@@ -1,8 +1,6 @@
 from gpiozero import Motor
 from enum import Enum
-from vehicle.consts import *
-
-MOTOR_SPEED = 0.5
+from vehicle.consts import MOTOR_SPEED, F_ENA, F_ENB, F_IN1, F_IN2, F_IN3, F_IN4, B_ENA, B_ENB, B_IN1, B_IN2, B_IN3, B_IN4
 
 class MotorDirection(Enum):
     """

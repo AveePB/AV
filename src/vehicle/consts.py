@@ -17,5 +17,11 @@ B_IN3 = 22 #'GPIO22'
 B_IN4 = 27 #'GPIO27'
 B_ENB = 17 #'GPIO17'
 
+MOTOR_SPEED = 0.5
+
+# Camera parameters
+IMG_FORMAT = 'RGB888'
+IMG_SIZE = (2560, 1920)
+
 # Lidar USB header
 USB_HEADER = '...'
