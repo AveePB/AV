@@ -5,11 +5,19 @@ from vehicle.consts import *
 MOTOR_SPEED = 0.5
 
 class MotorDirection(Enum):
+    """
+        MotorDirection is an enum multichoice class. It is responsible for representing all possible states of the motor.
+    """
+
     NONE = 0
     FORWARD = 1
     BACKWARD = -1
 
 class Maneuver(Enum):
+    """
+        Maneuver is an enum multichoice class. It is responsible for representing all possible maneuvers of the car.
+    """
+
     STOP = 0
     GO_FORWARD = 1
     GO_BACKWARD = 2
@@ -23,10 +31,18 @@ class Maneuver(Enum):
     TURN_RIGHT = 10
 
 class DCMotor(Motor):
+    """
+        Class used to control motor's spin direction and speed based on two input pins and one pwm pin. 
+    """
 
     def __init__(self, forward, backward, enable):
         """
-        Constructor responsible for correct initialization of motor.
+            Constructor responsible for correct initialization of motor.
+
+            Args:
+                forward (int): first input pin (in1)
+                backward (int): second input pin (in2)
+                enable (int): pwm input pin (en) 
         """
         super().__init__(forward=forward, backward=backward, enable=enable)
 
@@ -60,6 +76,9 @@ class DCMotor(Motor):
         self.__directon = MotorDirection.NONE
 
 class MotorSystem:
+    """
+        Motor system is used to force the car to perform certain maneuvers.
+    """
 
     def __init__(self):
         """
