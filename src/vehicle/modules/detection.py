@@ -10,7 +10,7 @@ class Camera(Picamera2):
     def __init__(self):
         super().__init__()
 
-        self.av_config = self.create_still_configuration({
+        self.av_config = self.create_still_configuration(main={
             "format": IMG_FORMAT,
             "size": IMG_SIZE
         })
