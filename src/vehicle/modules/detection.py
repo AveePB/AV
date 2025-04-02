@@ -4,7 +4,7 @@ import cv2
 
 class Camera(Picamera2):
     """
-        Class used to control AV's camera to recored/take photos of the closest environment.
+        Class used to control AV's camera to record/take photos of the closest environment.
     """
 
     def __init__(self):
