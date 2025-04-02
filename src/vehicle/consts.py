@@ -23,5 +23,6 @@ MOTOR_SPEED = 0.5
 IMG_FORMAT = 'RGB888'
 IMG_SIZE = (1920, 1080)
 
-# Lidar USB header
-USB_HEADER = '...'
+# Lidar data
+LIDAR_USB_HEADER = '...'
+LIDAR_SCAN_SIZE = 2500
