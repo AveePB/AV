@@ -80,7 +80,7 @@ class MotorSystem:
 
     def __init__(self):
         """
-        Constructor responsible for initializing all motors.
+            Constructor responsible for initializing all motors.
         """
         self.__FL_motor = DCMotor(forward=F_IN3, backward=F_IN4, enable=F_ENB)
         self.__FR_motor = DCMotor(forward=F_IN1, backward=F_IN2, enable=F_ENA)
@@ -89,10 +89,11 @@ class MotorSystem:
 
         self.__maneuver = Maneuver.STOP
 
-    """
-    Getter function, used to access private maneuver field value.
-    """
+    
     def get_maneuver(self):
+        """
+            Getter function, used to access private maneuver field value.
+        """
         return self.__maneuver
 
     def stop(self):
