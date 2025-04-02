@@ -23,4 +23,6 @@ class Camera(Picamera2):
         """
 
         img = super().capture_array('main')
+        img = cv2.rotate(img, cv2.ROTATE_180) # Camera is flipped by 180 degrees
+        
         return img
