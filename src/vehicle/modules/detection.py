@@ -41,8 +41,9 @@ class DetectionSystem:
         """
             Constructor responsible for initializing all sensors.
         """
-        self.__camera = Camera()
         self.__lidar = RPLidar(LIDAR_USB_HEADER)
+        self.__camera = Camera()
+        self.__camera.start()
 
         # Show lidar info
         print(self.__lidar.get_info())
