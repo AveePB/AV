@@ -6,16 +6,15 @@ import cv2
 class TestMotorSystem(unittest.TestCase):
 
     TEST_TIME = 5 # seconds
+    ds = DetectionSystem()
 
     def test_capture_image(self):
-        cam = Camera()
         winname = 'Camera Test'
-
+        
         # Turn on camera
         print("Take a picture!")
-        cam.start()
         
-        img = cam.capture_array()
+        img = self.ds.get_image()
         self.assertIsNotNone(img)
 
         # Create preview window
@@ -25,7 +24,6 @@ class TestMotorSystem(unittest.TestCase):
         cv2.waitKey(self.TEST_TIME * 1000) # wait x seconds
 
         # Turn off camera
-        cam.stop()
         cv2.destroyAllWindows()  
         print("Picture taken.")              
 
@@ -40,6 +38,6 @@ class TestMotorSystem(unittest.TestCase):
 
         # Turn off elements
         ds.turn_off()
-        
+
 if (__name__ == '__main__'):
     unittest.main()
