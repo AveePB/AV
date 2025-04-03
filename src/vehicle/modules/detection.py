@@ -1,6 +1,7 @@
 from rplidar import RPLidar
 from picamera2 import Picamera2
-from vehicle.consts import IMG_FORMAT, IMG_SIZE, LIDAR_USB_HEADER, LIDAR_SCAN_SIZE
+from vehicle.consts import IMG_FORMAT, IMG_SIZE, LIDAR_USB_HEADER, LIDAR_SCAN_SIZE, LIDAR_N_SCANS
+import random
 import cv2
 
 class Camera(Picamera2):
@@ -57,4 +58,12 @@ class DetectionSystem:
         """
             Scans nearby environment, then returns a map of points. 
         """
-        ...
+        all_points = []
+
+        for i, scan in enumerate(self.__lidar.iter_scans()):
+            if (i > LIDAR_N_SCANS): 
+                break
+            
+            all_points.extend(scan)
+        
+        return random.choices(all_points, k=LIDAR_N_SCANS*LIDAR_SCAN_SIZE)

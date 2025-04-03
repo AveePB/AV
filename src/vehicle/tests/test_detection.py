@@ -1,4 +1,5 @@
-from vehicle.modules.detection import Camera
+from vehicle.modules.detection import Camera, DetectionSystem
+from vehicle.consts import LIDAR_N_SCANS, LIDAR_SCAN_SIZE
 import unittest
 import cv2
 
@@ -27,6 +28,15 @@ class TestMotorSystem(unittest.TestCase):
         cam.stop()
         cv2.destroyAllWindows()  
         print("Picture taken.")              
+
+    def test_detection_system_scan_env(self):
+        # Perform first scan
+        ds = DetectionSystem()
+        points = ds.scan_env()
+
+        # Check if total size of scan is equal
+        print(points)
+        self.assertEqual(len(points), LIDAR_N_SCANS*LIDAR_SCAN_SIZE)
 
 if (__name__ == '__main__'):
     unittest.main()
