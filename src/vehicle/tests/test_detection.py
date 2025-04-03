@@ -38,5 +38,8 @@ class TestMotorSystem(unittest.TestCase):
         print(points)
         self.assertEqual(len(points), LIDAR_N_SCANS*LIDAR_SCAN_SIZE)
 
+        # Turn off elements
+        ds.turn_off()
+        
 if (__name__ == '__main__'):
     unittest.main()

@@ -65,5 +65,13 @@ class DetectionSystem:
                 break
             
             all_points.extend(scan)
-        
+                
         return random.choices(all_points, k=LIDAR_N_SCANS*LIDAR_SCAN_SIZE)
+    
+    def turn_off(self):
+        """
+            Shuts down camera and lidar sensor.
+        """
+        self.__camera.stop()
+        self.__lidar.stop_motor()
+        self.__lidar.stop()
