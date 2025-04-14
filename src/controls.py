@@ -4,7 +4,7 @@ from flask import Blueprint, Response
 CONTROLS_BP = Blueprint('controls', __name__)
 DRIVE_SYSTEM = MotorSystem()
 
-@CONTROLS_BP.route('/forward')
+@CONTROLS_BP.route('/forward', methods=['POST'])
 def driveForward():
     try:
         DRIVE_SYSTEM.go_forward()
@@ -13,7 +13,7 @@ def driveForward():
     
     return Response('Successfully set direction of the car to forward!', status=200, mimetype='application/json')
 
-@CONTROLS_BP.route('/backward')
+@CONTROLS_BP.route('/backward', methods=['POST'])
 def driveBackward():
     try:
         DRIVE_SYSTEM.go_backward()
@@ -22,7 +22,7 @@ def driveBackward():
     
     return Response('Successfully set direction of the car to backward!', status=200, mimetype='application/json')
 
-@CONTROLS_BP.route('/stop')
+@CONTROLS_BP.route('/stop', methods=['POST'])
 def stopDriving():
     try:
         DRIVE_SYSTEM.stop()
