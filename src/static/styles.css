@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    touch-action: none;
+    font-family: Arial, sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden;
+}
+
+.controller-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.joystick-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    touch-action: none;
+}
+
+.joystick-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #444;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.joystick-thumb {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #888;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-out;
+    touch-action: none;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.joystick-thumb.active {
+    background-color: #aaa;
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.joystick-thumb.at-boundary {
+    background-color: #ccc;
+    box-shadow: 0 0 15px rgba(255,100,100,0.7);
+}
+
+.turn-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    background-color: #555;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.1s;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.turn-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.turn-button.left {
+    background-color: #3a6ea5;
+}
+
+.turn-button.left:active {
+    background-color: #2d5a8a;
+}
+
+.turn-button.right {
+    background-color: #cc3333;
+}
+
+.turn-button.right:active {
+    background-color: #b32b2b;
+}
+
+.status {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    font-size: 14px;
+    border-left: 4px solid #f39c12;
+    z-index: 100;
+}
+
+@media (max-width: 768px) {
+    .controller-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .joystick-container {
+        width: 180px;
+        height: 180px;
+        order: -1;
+    }
+    
+    .joystick-thumb {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .turn-button {
+        width: 80px;
+        height: 80px;
+        font-size: 16px;
+    }
+}
