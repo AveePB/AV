@@ -1,5 +1,5 @@
 from controls import CONTROLS_BP
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 app.register_blueprint(CONTROLS_BP)
