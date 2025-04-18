@@ -23,8 +23,11 @@ class TestMotorSystem(unittest.TestCase):
         cv2.imshow(winname, img)
         cv2.moveWindow(winname, 0, 0)
         cv2.waitKey(self.TEST_TIME * 1000) # wait x seconds
+        print("Camera test completed!")
+
         
         # Perform first scan
+        print("Starts scanning!")
         points = ds.scan_env()
 
         # Check if total size of scan is equal
@@ -33,6 +36,7 @@ class TestMotorSystem(unittest.TestCase):
 
         # Turn off detection system
         ds.turn_off()
+        print("Scan completed!")
 
 if (__name__ == '__main__'):
     unittest.main()
