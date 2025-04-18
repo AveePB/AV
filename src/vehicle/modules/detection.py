@@ -59,7 +59,8 @@ class DetectionSystem:
         """
             Scans nearby environment, then returns a map of points. 
         """
-        scan_data = [-1] * LIDAR_SCAN_SIZE
+        EMPTY = -1
+        scan_data = [EMPTY] * LIDAR_SCAN_SIZE
         
         # Scan until you find all 360 angle-points
         for i, scan in enumerate(self.__lidar.iter_scans()):
@@ -70,13 +71,12 @@ class DetectionSystem:
             # Analyze each point
             for (quality, angle, distance) in scan:
                 angle = int(angle)
-                print (angle, distance)
                 
                 # If angle is in the range    
                 if (0 <= angle and angle < LIDAR_SCAN_SIZE):
                     
                     # Choose the closest point
-                    if (scan_data[angle] == 0 or distance < scan_data[angle]):
+                    if (scan_data[angle] == EMPTY or distance < scan_data[angle]):
                         scan_data[angle] = distance
 
         return scan_data
