@@ -62,8 +62,8 @@ class DetectionSystem:
         scan_data = [-1] * LIDAR_SCAN_SIZE
         
         # Scan until you find all 360 angle-points
-        for scan in self.__lidar.iter_scans():
-            for (_, angle, distance) in scan:
+        for i, scan in enumerate(self.__lidar.iter_scans()):
+            for (quality, angle, distance) in scan:
                 angle = int(angle)
                 
                 # If angle is in the range    
