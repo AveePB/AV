@@ -1,4 +1,4 @@
-from rplidar import RPLidar
+from pyrplidar import PyRPlidar
 from picamera2 import Picamera2
 from vehicle.consts import IMG_FORMAT, IMG_SIZE, LIDAR_USB_HEADER, LIDAR_SCAN_SIZE, LIADR_N_SCANS
 import random
@@ -41,13 +41,12 @@ class DetectionSystem:
         """
             Constructor responsible for initializing all sensors.
         """
-        self.__lidar = RPLidar(LIDAR_USB_HEADER)
+        self.__lidar = PyRPlidar()
+        self.__lidar.connect(LIDAR_USB_HEADER, baudrate=256000, timeout=3)
+        self.__lidar.set_motor_pwm(500)
+        
         self.__camera = Camera()
         self.__camera.start()
-
-        # Show lidar info
-        print(self.__lidar.get_info())
-        print(self.__lidar.get_health())
     
     def get_image(self):
         """
@@ -61,23 +60,24 @@ class DetectionSystem:
         """
         EMPTY = -1
         scan_data = [EMPTY] * LIDAR_SCAN_SIZE
+        scan_generator = self.__lidar.force_scan()
         
         # Scan until you find all 360 angle-points
-        for i, scan in enumerate(self.__lidar.iter_scans()):
+        for i, scan in enumerate(scan_generator):
             
             # Done with scanning
             if (LIADR_N_SCANS == i): break
-
+            print(scan)
             # Analyze each point
-            for (quality, angle, distance) in scan:
-                angle = int(angle)
+            #for (quality, angle, distance) in scan:
+                #angle = int(angle)
                 
                 # If angle is in the range    
-                if (0 <= angle and angle < LIDAR_SCAN_SIZE):
+                #if (0 <= angle and angle < LIDAR_SCAN_SIZE):
                     
                     # Choose the closest point
-                    if (scan_data[angle] == EMPTY or distance < scan_data[angle]):
-                        scan_data[angle] = distance
+                 #   if (scan_data[angle] == EMPTY or distance < scan_data[angle]):
+                  #      scan_data[angle] = distance
 
         return scan_data
     
@@ -85,6 +85,8 @@ class DetectionSystem:
         """
             Shuts down camera and lidar sensor.
         """
-        self.__camera.stop()
-        self.__lidar.stop_motor()
         self.__lidar.stop()
+        self.__lidar.set_motor_pwm(0)
+        self.__lidar.disconnect()
+
+        self.__camera.stop()
