@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="status" id="status">Status: Ready</div>
+    <div class="header">
+        <div class="status" id="status">Status: Ready</div>
+        <div class="mode-switch">
+            <button id="modeToggle" class="mode-button manual">Manual Mode</button>
+        </div>
+    </div>
     
     <div class="controller-container">
         <button class="turn-button left" id="turnLeft">↶ Left</button>

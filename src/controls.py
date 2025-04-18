@@ -4,6 +4,27 @@ from flask import Blueprint, Response
 CONTROLS_BP = Blueprint('controls', __name__)
 VEHICLE = Vehicle()
 
+@CONTROLS_BP.route('/autonomous-mode', methods=['POST'])
+def setAutonomousMode():
+    """
+        Endpoint function responsible for switching the car's mode to the autonomous.
+    """
+    
+    VEHICLE.set_autonomous_mode()
+    
+    return Response('Successfully set the autonomous mode!', status=200, mimetype='application/json')
+
+@CONTROLS_BP.route('/manual-mode', methods=['POST'])
+def setManualMode():
+    """
+        Endpoint function responsible for switching the car's mode to the manual.
+    """
+    
+    VEHICLE.set_manual_mode()
+
+    return Response('Successfully set the manual mode!', status=200, mimetype='application/json')
+
+
 @CONTROLS_BP.route('/forward', methods=['POST'])
 def driveForward():
     """

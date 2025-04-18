@@ -1,15 +1,61 @@
 body {
     margin: 0;
+    padding-top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
     background-color: #f0f0f0;
     touch-action: none;
     font-family: Arial, sans-serif;
     user-select: none;
     -webkit-user-select: none;
-    overflow: hidden;
+    overflow-x: hidden;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(255,255,255,0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.status {
+    font-weight: bold;
+    color: #333;
+    margin-right: 20px;
+}
+
+.mode-switch {
+    margin-left: auto;
+}
+
+.mode-button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-size: 14px;
+}
+
+.mode-button.manual {
+    background-color: #3a6ea5;
+    color: white;
+}
+
+.mode-button.autonomous {
+    background-color: #2ecc71;
+    color: white;
 }
 
 .controller-container {
@@ -17,6 +63,7 @@ body {
     align-items: center;
     gap: 20px;
     padding: 20px;
+    margin-top: 20px;
 }
 
 .joystick-container {
@@ -78,7 +125,12 @@ body {
     -webkit-user-select: none;
 }
 
-.turn-button:active {
+.turn-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.turn-button:active:not(:disabled) {
     transform: scale(0.95);
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
@@ -87,7 +139,7 @@ body {
     background-color: #3a6ea5;
 }
 
-.turn-button.left:active {
+.turn-button.left:active:not(:disabled) {
     background-color: #2d5a8a;
 }
 
@@ -95,21 +147,8 @@ body {
     background-color: #cc3333;
 }
 
-.turn-button.right:active {
+.turn-button.right:active:not(:disabled) {
     background-color: #b32b2b;
-}
-
-.status {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    font-size: 14px;
-    border-left: 4px solid #f39c12;
-    z-index: 100;
 }
 
 @media (max-width: 768px) {
@@ -133,5 +172,10 @@ body {
         width: 80px;
         height: 80px;
         font-size: 16px;
+    }
+    
+    .mode-button {
+        padding: 8px 16px;
+        font-size: 13px;
     }
 }
