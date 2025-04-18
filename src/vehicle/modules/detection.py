@@ -70,6 +70,7 @@ class DetectionSystem:
             # Analyze each point
             for (quality, angle, distance) in scan:
                 angle = int(angle)
+                print (angle, distance)
                 
                 # If angle is in the range    
                 if (0 <= angle and angle < LIDAR_SCAN_SIZE):
