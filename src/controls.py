@@ -1,4 +1,4 @@
-from vehicle.vehicle import Vehicle
+from vehicle.modules.v3hicle import Vehicle
 from flask import Blueprint, Response
 
 CONTROLS_BP = Blueprint('controls', __name__)
