@@ -1,5 +1,5 @@
 from vehicle.modules.detection import Camera, DetectionSystem
-from vehicle.consts import LIDAR_N_SCANS, LIDAR_SCAN_SIZE
+from vehicle.consts import LIDAR_SCAN_SIZE
 import unittest
 import cv2
 
@@ -29,7 +29,7 @@ class TestMotorSystem(unittest.TestCase):
 
         # Check if total size of scan is equal
         print(points)
-        self.assertEqual(len(points), LIDAR_N_SCANS*LIDAR_SCAN_SIZE)
+        self.assertEqual(len(points), LIDAR_SCAN_SIZE)
 
         # Turn off detection system
         ds.turn_off()

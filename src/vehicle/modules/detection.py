@@ -1,6 +1,6 @@
 from rplidar import RPLidar
 from picamera2 import Picamera2
-from vehicle.consts import IMG_FORMAT, IMG_SIZE, LIDAR_USB_HEADER, LIDAR_SCAN_SIZE, LIDAR_N_SCANS
+from vehicle.consts import IMG_FORMAT, IMG_SIZE, LIDAR_USB_HEADER, LIDAR_SCAN_SIZE
 import random
 import cv2
 
@@ -59,15 +59,24 @@ class DetectionSystem:
         """
             Scans nearby environment, then returns a map of points. 
         """
-        all_points = []
-
-        for i, scan in enumerate(self.__lidar.iter_scans()):
-            if (i > LIDAR_N_SCANS): 
-                break
-            
-            all_points.extend(scan)
+        scan_data = [-1] * LIDAR_SCAN_SIZE
+        
+        # Scan until you find all 360 angle-points
+        for scan in self.__lidar.iter_scans():
+            for (_, angle, distance) in scan:
+                angle = int(angle)
                 
-        return random.choices(all_points, k=LIDAR_N_SCANS*LIDAR_SCAN_SIZE)
+                # If angle is in the range    
+                if (0 <= angle and angle < LIDAR_SCAN_SIZE):
+                    
+                    # Choose the closest point
+                    if (scan_data[angle] == 0 or distance < scan_data[angle]):
+                        scan_data[angle] = distance
+
+            # We now have full 360 scan
+            if (scan_data.count(-1) == 0): break
+        
+        return scan_data
     
     def turn_off(self):
         """
