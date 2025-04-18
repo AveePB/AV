@@ -15,7 +15,7 @@ class Vehicle:
         self.__motor_system = MotorSystem()
         self.__is_autonomous = False
 
-    def set_autonomuous_mode(self):
+    def set_autonomous_mode(self):
         """
             Setter function of variable __is_autonomous.
         """
