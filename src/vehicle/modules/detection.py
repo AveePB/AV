@@ -1,6 +1,6 @@
 from rplidar import RPLidar
 from picamera2 import Picamera2
-from vehicle.consts import IMG_FORMAT, IMG_SIZE, LIDAR_USB_HEADER, LIDAR_SCAN_SIZE
+from vehicle.consts import IMG_FORMAT, IMG_SIZE, LIDAR_USB_HEADER, LIDAR_SCAN_SIZE, LIADR_N_SCANS
 import random
 import cv2
 
@@ -63,6 +63,11 @@ class DetectionSystem:
         
         # Scan until you find all 360 angle-points
         for i, scan in enumerate(self.__lidar.iter_scans()):
+            
+            # Done with scanning
+            if (LIADR_N_SCANS == i): break
+
+            # Analyze each point
             for (quality, angle, distance) in scan:
                 angle = int(angle)
                 
@@ -73,9 +78,6 @@ class DetectionSystem:
                     if (scan_data[angle] == 0 or distance < scan_data[angle]):
                         scan_data[angle] = distance
 
-            # We now have full 360 scan
-            if (scan_data.count(-1) == 0): break
-        
         return scan_data
     
     def turn_off(self):
