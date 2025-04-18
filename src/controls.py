@@ -1,7 +1,9 @@
 from vehicle.modules.motors import MotorSystem
+from vehicle.modules.detection import DetectionSystem
 from flask import Blueprint, Response
 
 CONTROLS_BP = Blueprint('controls', __name__)
+DETECTION_SYSTEM = DetectionSystem()
 DRIVE_SYSTEM = MotorSystem()
 
 @CONTROLS_BP.route('/forward', methods=['POST'])
