@@ -7,24 +7,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="header">
-        <div class="status" id="status">Status: Ready</div>
-        <div class="mode-switch">
-            <button id="modeToggle" class="mode-button manual">Manual Mode</button>
-        </div>
-    </div>
-    
-    <div class="controller-container">
-        <button class="turn-button left" id="turnLeft">↶ Left</button>
-        
-        <div class="joystick-container" id="joystick-container">
-            <div class="joystick-base"></div>
-            <div class="joystick-thumb" id="joystick"></div>
+    <div class="app-container">
+        <div class="header">
+            <div class="status" id="status">Status: Ready</div>
+            <div class="mode-switch">
+                <button id="modeToggle" class="mode-button manual">Manual Mode</button>
+            </div>
         </div>
         
-        <button class="turn-button right" id="turnRight">↷ Right</button>
+        <div class="content-wrapper">
+            <div class="video-panel">
+                <img id="videoStream" src="{{ url_for('streamCamera') }}" alt="Live Camera Feed">
+            </div>
+            
+            <div class="control-panel">
+                <div class="controller-container">
+                    <button class="turn-button left" id="turnLeft">↶ Left</button>
+                    
+                    <div class="joystick-container" id="joystick-container">
+                        <div class="joystick-base"></div>
+                        <div class="joystick-thumb" id="joystick"></div>
+                    </div>
+                    
+                    <button class="turn-button right" id="turnRight">↷ Right</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="{{ url_for('static', filename='joystick.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/joystick.js') }}"></script>
 </body>
 </html>

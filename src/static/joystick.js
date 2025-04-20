@@ -7,13 +7,14 @@ class VirtualJoystick {
         this.turnLeftBtn = document.getElementById('turnLeft');
         this.turnRightBtn = document.getElementById('turnRight');
         this.modeToggle = document.getElementById('modeToggle');
+        this.videoStream = document.getElementById('videoStream');
         
         // State variables
         this.isDragging = false;
         this.touchId = null;
         this.activeTurnButton = null;
         this.lastDirection = null;
-        this.currentMode = 'manual'; // 'manual' or 'autonomous'
+        this.currentMode = 'manual';
         this.apiBaseUrl = window.location.origin;
         
         // Geometry properties
@@ -30,8 +31,25 @@ class VirtualJoystick {
     init() {
         this.calculateDimensions();
         this.setupEventListeners();
-        this.updateStatus('Ready');
+        this.updateStatus('System Ready');
         this.updateModeDisplay();
+        this.setupVideoStream();
+    }
+
+    setupVideoStream() {
+        // Handle video stream errors
+        this.videoStream.onerror = () => {
+            this.updateStatus('Video feed disconnected');
+            // Attempt to reconnect every 5 seconds
+            setTimeout(() => {
+                this.videoStream.src = `${this.apiBaseUrl}/camera?${Date.now()}`;
+            }, 5000);
+        };
+        
+        // Refresh stream periodically to prevent freezing
+        setInterval(() => {
+            this.videoStream.src = `${this.apiBaseUrl}/camera?${Date.now()}`;
+        }, 30000); // Refresh every 30 seconds
     }
 
     calculateDimensions() {
@@ -45,9 +63,7 @@ class VirtualJoystick {
 
     setupEventListeners() {
         // Mode toggle
-        this.modeToggle.addEventListener('click', () => {
-            this.toggleMode();
-        });
+        this.modeToggle.addEventListener('click', () => this.toggleMode());
 
         // Mouse events
         this.joystick.addEventListener('mousedown', (e) => {
@@ -58,20 +74,16 @@ class VirtualJoystick {
         });
 
         document.addEventListener('mousemove', (e) => {
-            if (this.isDragging) {
-                this.drag(e);
-            }
+            if (this.isDragging) this.drag(e);
         });
 
         document.addEventListener('mouseup', () => {
-            if (this.isDragging) {
-                this.endDrag();
-            }
+            if (this.isDragging) this.endDrag();
         });
 
         // Touch events
         this.joystick.addEventListener('touchstart', (e) => {
-            if (this.currentMode === 'manual' && !this.touchId && e.changedTouches.length > 0) {
+            if (this.currentMode === 'manual' && !this.touchId) {
                 this.touchId = e.changedTouches[0].identifier;
                 this.startDrag(e.changedTouches[0]);
                 e.preventDefault();
@@ -79,13 +91,12 @@ class VirtualJoystick {
         }, { passive: false });
 
         document.addEventListener('touchmove', (e) => {
-            if (this.touchId !== null) {
-                for (let touch of e.changedTouches) {
-                    if (touch.identifier === this.touchId) {
-                        this.drag(touch);
-                        e.preventDefault();
-                        break;
-                    }
+            if (!this.touchId) return;
+            for (let touch of e.changedTouches) {
+                if (touch.identifier === this.touchId) {
+                    this.drag(touch);
+                    e.preventDefault();
+                    break;
                 }
             }
         }, { passive: false });
@@ -93,19 +104,11 @@ class VirtualJoystick {
         document.addEventListener('touchend', (e) => {
             for (let touch of e.changedTouches) {
                 if (touch.identifier === this.touchId) {
-                    this.touchId = null;
                     this.endDrag();
+                    this.touchId = null;
                     e.preventDefault();
                     break;
                 }
-            }
-        }, { passive: false });
-
-        document.addEventListener('touchcancel', (e) => {
-            if (this.touchId !== null) {
-                this.touchId = null;
-                this.endDrag();
-                e.preventDefault();
             }
         }, { passive: false });
 
@@ -113,21 +116,20 @@ class VirtualJoystick {
         const handleTurnStart = (direction, e) => {
             if (this.currentMode === 'manual') {
                 this.activeTurnButton = direction;
-                this.sendCommand(`/turn-${direction.toLowerCase()}`, 'POST');
+                this.sendCommand(`/turn-${direction.toLowerCase()}`);
                 e.preventDefault();
             }
         };
 
-        const handleTurnEnd = (e) => {
+        const handleTurnEnd = () => {
             if (this.activeTurnButton) {
-                this.sendCommand('/stop', 'POST');
+                this.sendCommand('/stop');
                 this.activeTurnButton = null;
             }
         };
 
         this.turnLeftBtn.addEventListener('mousedown', (e) => handleTurnStart('left', e));
         this.turnLeftBtn.addEventListener('touchstart', (e) => handleTurnStart('left', e));
-        
         this.turnRightBtn.addEventListener('mousedown', (e) => handleTurnStart('right', e));
         this.turnRightBtn.addEventListener('touchstart', (e) => handleTurnStart('right', e));
         
@@ -143,72 +145,60 @@ class VirtualJoystick {
     toggleMode() {
         this.currentMode = this.currentMode === 'manual' ? 'autonomous' : 'manual';
         this.updateModeDisplay();
-        
         const endpoint = this.currentMode === 'manual' ? '/manual-mode' : '/autonomous-mode';
-        this.sendCommand(endpoint, 'POST');
+        this.sendCommand(endpoint);
     }
 
     updateModeDisplay() {
         if (this.currentMode === 'manual') {
             this.modeToggle.textContent = 'Manual Mode';
-            this.modeToggle.classList.remove('autonomous');
-            this.modeToggle.classList.add('manual');
+            this.modeToggle.classList.replace('autonomous', 'manual');
             this.enableControls(true);
-            this.updateStatus('Manual Mode Activated');
+            this.updateStatus('Manual Control Active');
         } else {
             this.modeToggle.textContent = 'Autonomous Mode';
-            this.modeToggle.classList.remove('manual');
-            this.modeToggle.classList.add('autonomous');
+            this.modeToggle.classList.replace('manual', 'autonomous');
             this.enableControls(false);
-            this.updateStatus('Autonomous Mode Activated');
-            // Send stop command when switching to autonomous
-            this.sendCommand('/stop', 'POST');
+            this.updateStatus('Autonomous Mode Active');
+            this.sendCommand('/stop');
         }
     }
 
     enableControls(enabled) {
-        // Enable/disable joystick and buttons based on mode
-        this.joystick.style.opacity = enabled ? '1' : '0.5';
+        const opacity = enabled ? '1' : '0.6';
+        this.joystick.style.opacity = opacity;
         this.turnLeftBtn.disabled = !enabled;
         this.turnRightBtn.disabled = !enabled;
         
-        // Reset any active controls if disabling
-        if (!enabled && this.isDragging) {
-            this.endDrag();
-        }
-        if (!enabled && this.activeTurnButton) {
-            this.sendCommand('/stop', 'POST');
-            this.activeTurnButton = null;
+        if (!enabled) {
+            if (this.isDragging) this.endDrag();
+            if (this.activeTurnButton) {
+                this.sendCommand('/stop');
+                this.activeTurnButton = null;
+            }
         }
     }
 
-    async sendCommand(endpoint, method = 'POST') {
+    async sendCommand(endpoint) {
         try {
-            const response = await fetch(`${this.apiBaseUrl}${endpoint}`, {
-                method: method,
-                headers: {
-                    'Accept': 'application/json',
-                }
+            const timestamp = Date.now();
+            const response = await fetch(`${this.apiBaseUrl}${endpoint}?_=${timestamp}`, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' }
             });
             
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error ${response.status}`);
             
-            // Handle text response with JSON content type
-            const text = await response.text();
+            const responseText = await response.text();
+            this.updateStatus(responseText || `Command sent: ${endpoint}`);
+            
             try {
-                // Try to parse as JSON if possible
-                const data = JSON.parse(text);
-                this.updateStatus(data.message || text);
-                return data;
+                return JSON.parse(responseText);
             } catch {
-                // If not JSON, use the raw text
-                this.updateStatus(text);
-                return text;
+                return responseText;
             }
         } catch (error) {
-            console.error('Error sending command:', error);
+            console.error('Command error:', error);
             this.updateStatus(`Error: ${error.message}`);
             throw error;
         }
@@ -229,16 +219,15 @@ class VirtualJoystick {
     drag(e) {
         if (!this.isDragging || this.currentMode !== 'manual') return;
 
-        const clientX = e.clientX ?? e.touches?.[0]?.clientX ?? e.changedTouches?.[0]?.clientX;
-        const clientY = e.clientY ?? e.touches?.[0]?.clientY ?? e.changedTouches?.[0]?.clientY;
-        
-        if (clientX === undefined || clientY === undefined) return;
+        const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+        const clientY = e.clientY ?? e.touches?.[0]?.clientY;
+        if (!clientX || !clientY) return;
 
         let x = clientX - this.centerX;
         let y = clientY - this.centerY;
         
         const distance = Math.sqrt(x * x + y * y);
-        const angle = Math.atan2(y, x) * (180 / Math.PI); // Convert to degrees
+        const angle = Math.atan2(y, x) * (180 / Math.PI);
         
         if (distance > this.maxDistance) {
             const ratio = this.maxDistance / distance;
@@ -251,22 +240,18 @@ class VirtualJoystick {
         
         this.joystick.style.transform = `translate(${x}px, ${y}px)`;
         
-        // Determine direction based on angle and distance
-        const normalizedDistance = distance / this.maxDistance;
-        let direction = this.getDirection(angle, normalizedDistance);
-        
+        const direction = this.getDirection(angle, distance / this.maxDistance);
         if (direction !== this.lastDirection) {
             this.lastDirection = direction;
-            this.sendCommand(`/${direction}`, 'POST');
+            this.sendCommand(`/${direction}`);
         }
     }
 
     getDirection(angle, distance) {
         if (distance < 0.3) return 'stop';
-        
-        // Convert angle to positive value (0-360)
         angle = (angle + 360) % 360;
         
+        /*
         if (angle >= 337.5 || angle < 22.5) return 'right';
         if (angle >= 22.5 && angle < 67.5) return 'bottom-right';
         if (angle >= 67.5 && angle < 112.5) return 'backward';
@@ -275,7 +260,22 @@ class VirtualJoystick {
         if (angle >= 202.5 && angle < 247.5) return 'top-left';
         if (angle >= 247.5 && angle < 292.5) return 'forward';
         if (angle >= 292.5 && angle < 337.5) return 'top-right';
+        */
+
+        const directions = [
+            [337.5, 22.5, 'right'],
+            [22.5, 67.5, 'bottom-right'],
+            [67.5, 112.5, 'backward'],
+            [112.5, 157.5, 'bottom-left'],
+            [157.5, 202.5, 'left'],
+            [202.5, 247.5, 'top-left'],
+            [247.5, 292.5, 'forward'],
+            [292.5, 337.5, 'top-right']
+        ];
         
+        for (const [min, max, dir] of directions) {
+            if (angle >= min && angle < max) return dir;
+        }
         return 'stop';
     }
 
@@ -283,14 +283,13 @@ class VirtualJoystick {
         if (!this.isDragging) return;
         
         this.isDragging = false;
-        this.touchId = null;
         this.joystick.style.transition = 'transform 0.3s ease-out';
         this.joystick.style.transform = 'translate(-50%, -50%)';
         this.joystick.classList.remove('active', 'at-boundary');
         
         if (this.lastDirection !== 'stop') {
             this.lastDirection = 'stop';
-            this.sendCommand('/stop', 'POST');
+            this.sendCommand('/stop');
         }
     }
 }
