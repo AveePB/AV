@@ -113,14 +113,14 @@ class VirtualJoystick {
         const handleTurnStart = (direction, e) => {
             if (this.currentMode === 'manual') {
                 this.activeTurnButton = direction;
-                this.sendCommand(`/turn-${direction.toLowerCase()}`, 'POST');
+                this.sendCommand(`/turn-${direction.toLowerCase()}`);
                 e.preventDefault();
             }
         };
 
         const handleTurnEnd = (e) => {
             if (this.activeTurnButton) {
-                this.sendCommand('/stop', 'POST');
+                this.sendCommand('/stop');
                 this.activeTurnButton = null;
             }
         };
@@ -145,7 +145,7 @@ class VirtualJoystick {
         this.updateModeDisplay();
         
         const endpoint = this.currentMode === 'manual' ? '/manual-mode' : '/autonomous-mode';
-        this.sendCommand(endpoint, 'POST');
+        this.sendCommand(endpoint);
     }
 
     updateModeDisplay() {
@@ -162,7 +162,7 @@ class VirtualJoystick {
             this.enableControls(false);
             this.updateStatus('Autonomous Mode Activated');
             // Send stop command when switching to autonomous
-            this.sendCommand('/stop', 'POST');
+            this.sendCommand('/stop');
         }
     }
 
@@ -177,15 +177,15 @@ class VirtualJoystick {
             this.endDrag();
         }
         if (!enabled && this.activeTurnButton) {
-            this.sendCommand('/stop', 'POST');
+            this.sendCommand('/stop');
             this.activeTurnButton = null;
         }
     }
 
-    async sendCommand(endpoint, method = 'POST') {
+    async sendCommand(endpoint) {
         try {
             const response = await fetch(`${this.apiBaseUrl}${endpoint}`, {
-                method: method,
+                method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                 }
@@ -195,17 +195,16 @@ class VirtualJoystick {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
-            // Handle text response with JSON content type
-            const text = await response.text();
+            // Handle both text and JSON responses
+            const responseText = await response.text();
+            this.updateStatus(responseText);
+            
             try {
                 // Try to parse as JSON if possible
-                const data = JSON.parse(text);
-                this.updateStatus(data.message || text);
-                return data;
+                return JSON.parse(responseText);
             } catch {
-                // If not JSON, use the raw text
-                this.updateStatus(text);
-                return text;
+                // Return text if not JSON
+                return responseText;
             }
         } catch (error) {
             console.error('Error sending command:', error);
@@ -257,7 +256,7 @@ class VirtualJoystick {
         
         if (direction !== this.lastDirection) {
             this.lastDirection = direction;
-            this.sendCommand(`/${direction}`, 'POST');
+            this.sendCommand(`/${direction}`);
         }
     }
 
@@ -290,7 +289,7 @@ class VirtualJoystick {
         
         if (this.lastDirection !== 'stop') {
             this.lastDirection = 'stop';
-            this.sendCommand('/stop', 'POST');
+            this.sendCommand('/stop');
         }
     }
 }

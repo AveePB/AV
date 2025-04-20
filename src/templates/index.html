@@ -13,7 +13,11 @@
             <button id="modeToggle" class="mode-button manual">Manual Mode</button>
         </div>
     </div>
-    
+
+    <div class="video-container">
+        <img id="videoStream" src="{{ url_for('video_feed') }}" alt="Live Feed">
+    </div>
+
     <div class="controller-container">
         <button class="turn-button left" id="turnLeft">↶ Left</button>
         

@@ -1,10 +1,9 @@
 body {
     margin: 0;
-    padding-top: 60px;
+    padding: 0;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 60px);
+    flex-direction: column;
     background-color: #f0f0f0;
     touch-action: none;
     font-family: Arial, sans-serif;
@@ -58,12 +57,30 @@ body {
     color: white;
 }
 
+/* Simple Video Container */
+.video-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 70px auto 20px;
+    background: #444;
+    text-align: center;
+}
+
+.video-container img {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    display: block;
+}
+
+/* Controller Styles */
 .controller-container {
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 20px;
-    margin-top: 20px;
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .joystick-container {
@@ -151,10 +168,20 @@ body {
     background-color: #b32b2b;
 }
 
+/* Mobile Layout */
 @media (max-width: 768px) {
+    .video-container {
+        margin: 60px auto 10px;
+    }
+    
+    .video-container img {
+        max-height: 40vh;
+    }
+    
     .controller-container {
         flex-direction: column;
         gap: 15px;
+        padding: 10px;
     }
     
     .joystick-container {
