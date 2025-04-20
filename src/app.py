@@ -14,11 +14,12 @@ def home():
 @app.route('/video_feed')
 def video_feed():
     def generate():
-        frame = VEHICLE.detection_system().get_image()
-        ret, buffer = cv2.imencode('.jpg', frame)
-        frame = buffer.tobytes()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        while True:
+                frame = VEHICLE.detection_system().get_image()
+                ret, buffer = cv2.imencode('.jpg', frame)
+                frame = buffer.tobytes()
+                yield (b'--frame\r\n'
+                        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
     return Response(generate(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
