@@ -1,5 +1,6 @@
 from controls import CONTROLS_BP, VEHICLE
 from flask import Flask, render_template, Response
+import time
 import cv2
 
 app = Flask(__name__)
@@ -10,17 +11,17 @@ def home():
         VEHICLE.set_manual_mode()
         return render_template('index.html')
 
-@app.route('/camera', methods=['GET'])
-def streamCamera():
-        ret, buffer = cv2.imencode('.jpg', VEHICLE.detection_system().get_image(), [int(cv2.IMWRITE_JPEG_QUALITY), 70])
-        frame = buffer.toBytes()
+@app.route('/video_feed')
+def video_feed():
+    def generate():
+        frame = VEHICLE.detection_system().get_image()
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-        return Response(
-                b'--frame\r\n' 
-                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n',
-                mimetype='multipart/x-mixed-replace; boundary=frame'
-        )
-
+    return Response(generate(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if (__name__ == '__main__'):
     app.run(debug=True)
