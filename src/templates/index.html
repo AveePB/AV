@@ -14,12 +14,10 @@
         </div>
     </div>
 
-    <div>
-        <h1>Webcam feed</h1>
-        <img src="{{ url_for('video_feed') }}" width="640" height="480"/>
+    <div class="video-container">
+        <img id="videoStream" src="{{ url_for('video_feed') }}" alt="Live Feed">
     </div>
 
-    
     <div class="controller-container">
         <button class="turn-button left" id="turnLeft">↶ Left</button>
         
