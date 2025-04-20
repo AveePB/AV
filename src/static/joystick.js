@@ -272,7 +272,7 @@ class VirtualJoystick {
         if (angle >= 112.5 && angle < 157.5) return 'bottom-left';
         if (angle >= 157.5 && angle < 202.5) return 'left';
         if (angle >= 202.5 && angle < 247.5) return 'top-left';
-        if (angle >= 247.5 && angle < 292.5) return 'forkward';
+        if (angle >= 247.5 && angle < 292.5) return 'forward';
         if (angle >= 292.5 && angle < 337.5) return 'top-right';
         
         return 'stop';
