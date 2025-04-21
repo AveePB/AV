@@ -30,15 +30,15 @@ if (__name__ == '__main__'):
     flask_process = Process(target=app.run)
     flask_process.start()
 
-    robot = Robot(LIDAR_DATA_PATH, LIDAR_USB_HEADER)
-    robot_process = Process(target=robot.run)
-    robot_process.start()
+    #robot = Robot(LIDAR_DATA_PATH, LIDAR_USB_HEADER)
+    #robot_process = Process(target=robot.run)
+    #robot_process.start()
 
-    robot_process.join(15)
+    #robot_process.join(15)
     flask_process.join(15)
     
-    robot_process.terminate()
+    #robot_process.terminate()
     flask_process.terminate()
 
-    robot.stop_lidar()
+    #robot.stop_lidar()
     VEHICLE.camera().stop()
