@@ -1,4 +1,4 @@
-from joystick import VEHICLE
+from car import VEHICLE
 from flask import render_template, Blueprint, Response
 import cv2
 

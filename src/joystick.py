@@ -1,8 +1,7 @@
-from vehicle.modules.v3hicle import Vehicle
+from car import VEHICLE
 from flask import Blueprint, Response
 
 JOYSTICK_BP = Blueprint('joystick', __name__)
-VEHICLE = Vehicle()
 
 @JOYSTICK_BP.route('/autonomous-mode', methods=['POST'])
 def setAutonomousMode():
