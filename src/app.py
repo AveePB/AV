@@ -1,4 +1,4 @@
-from joystick import JOYSTICK_BP, VEHICLE
+from joystick import JOYSTICK_BP
 from routes import ROUTES_BP
 from flask import Flask
 
