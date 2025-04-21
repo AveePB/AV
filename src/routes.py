@@ -5,12 +5,20 @@ import cv2
 ROUTES_BP = Blueprint('routes', __name__)
 
 @ROUTES_BP.route('/', methods=['GET'])
-def home():
-        VEHICLE.set_manual_mode()
-        return render_template('index.html')
+def index():
+    """
+        Endpoint function that return the page.
+    """
+
+    VEHICLE.set_manual_mode()
+    return render_template('index.html')
 
 @ROUTES_BP.route('/video_feed')
 def video_feed():
+    """
+        Endpoint function that continuously returns a captured image from the camera. 
+    """
+
     def generate():
         while True:
                 frame = VEHICLE.camera().capture_array()
