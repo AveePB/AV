@@ -16,7 +16,8 @@ class TestCamera(unittest.TestCase):
         
         img = camera.capture_array()
         self.assertIsNotNone(img)
-
+        print("Picture taken!")
+        
         # Create preview window
         cv2.namedWindow(winname)
         cv2.imshow(winname, img)
