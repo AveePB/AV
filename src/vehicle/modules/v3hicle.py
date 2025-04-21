@@ -12,6 +12,7 @@ class Vehicle:
         """
 
         self.__camera = Camera()
+        self.__camera.start()
         self.__motor_system = MotorSystem()
         self.__is_autonomous = False
 

@@ -1,7 +1,7 @@
 from vehicle.consts import LIDAR_USB_HEADER, LIDAR_DATA_PATH
 from joystick import JOYSTICK_BP
 from routes import ROUTES_BP
-from car import Robot
+from car import Robot, VEHICLE
 from multiprocessing import Process
 from flask import Flask
 
@@ -24,3 +24,4 @@ if (__name__ == '__main__'):
     flask_process.terminate()
 
     robot.stop_lidar()
+    VEHICLE.camera().stop()
