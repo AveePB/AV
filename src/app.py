@@ -17,8 +17,8 @@ if (__name__ == '__main__'):
     robot_process = Process(target=robot.run)
     robot_process.start()
 
-    robot_process.join(5)
-    flask_process.join(5)
+    robot_process.join(15)
+    flask_process.join(15)
     
     robot_process.terminate()
     flask_process.terminate()
