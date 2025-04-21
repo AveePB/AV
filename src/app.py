@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.register_blueprint(JOYSTICK_BP)
 app.register_blueprint(ROUTES_BP)
 
-@app.route('/video_feed')
+@app.route('/video_feed', methods=['GET'])
 def video_feed():
     """
         Endpoint function that continuously returns a captured image from the camera. 
