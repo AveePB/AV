@@ -17,8 +17,10 @@ def video_feed():
     """
 
     def generate():
+        camera = cv2.VideoCapture(0)
         while True:
-                frame = VEHICLE.camera().capture_array()
+                camera = camera.read()
+                #frame = VEHICLE.camera().capture_array()
                 ret, buffer = cv2.imencode('.jpg', frame)
                 frame = buffer.tobytes()
                 yield (b'--frame\r\n'
@@ -41,4 +43,4 @@ if (__name__ == '__main__'):
     flask_process.terminate()
 
     #robot.stop_lidar()
-    VEHICLE.camera().stop()
+    #VEHICLE.camera().stop()
