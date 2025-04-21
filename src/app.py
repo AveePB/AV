@@ -19,12 +19,15 @@ def video_feed():
     def generate():
         camera = cv2.VideoCapture(0)
         while True:
-                frame = camera.read()
+                success, frame = camera.read()
+                if (not success):
+                     break
+                else:
                 #frame = VEHICLE.camera().capture_array()
-                ret, buffer = cv2.imencode('.jpg', frame)
-                frame = buffer.tobytes()
-                yield (b'--frame\r\n'
-                        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+                    ret, buffer = cv2.imencode('.jpg', frame)
+                    frame = buffer.tobytes()
+                    yield (b'--frame\r\n'
+                            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
     return Response(generate(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
