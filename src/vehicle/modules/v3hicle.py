@@ -1,4 +1,4 @@
-from vehicle.modules.detection import DetectionSystem
+from vehicle.modules.camera import Camera
 from vehicle.modules.motors import MotorSystem
 
 class Vehicle:
@@ -11,7 +11,7 @@ class Vehicle:
             Constructor responsible for correct initialization of the vehicle model.
         """
 
-        self.__detection_system = DetectionSystem()
+        self.__camera = Camera()
         self.__motor_system = MotorSystem()
         self.__is_autonomous = False
 
@@ -33,11 +33,11 @@ class Vehicle:
         """
         return self.__is_autonomous
     
-    def detection_system(self):
+    def camera(self):
         """
             Access function of object __detection_system.
         """
-        return self.__detection_system
+        return self.__camera
     
     def drive_system(self):
         """
