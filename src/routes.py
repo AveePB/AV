@@ -13,23 +13,6 @@ def index():
     VEHICLE.set_manual_mode()
     return render_template('index.html')
 
-@ROUTES_BP.route('/video_feed')
-def video_feed():
-    """
-        Endpoint function that continuously returns a captured image from the camera. 
-    """
-
-    def generate():
-        while True:
-                frame = VEHICLE.camera().capture_array()
-                ret, buffer = cv2.imencode('.jpg', frame)
-                frame = buffer.tobytes()
-                yield (b'--frame\r\n'
-                        b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
-    return Response(generate(),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-
 @ROUTES_BP.route('/autonomous-mode', methods=['POST'])
 def setAutonomousMode():
     """
