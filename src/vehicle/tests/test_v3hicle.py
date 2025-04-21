@@ -1,7 +1,7 @@
 from vehicle.modules.v3hicle import Vehicle
 import unittest
 
-class TestMotorSystem(unittest.TestCase):
+class TestVehicle(unittest.TestCase):
 
     def test_accessing_variables(self):
         # Initialize vehilce
@@ -16,7 +16,7 @@ class TestMotorSystem(unittest.TestCase):
         self.assertFalse(vehicle.is_autonomous())
 
         # Access detection system
-        self.assertIsNotNone(vehicle.detection_system())
+        self.assertIsNotNone(vehicle.camera())
 
         # Access drive system
         self.assertIsNotNone(vehicle.drive_system())
