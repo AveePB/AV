@@ -3,27 +3,6 @@ from flask import Blueprint, Response
 
 JOYSTICK_BP = Blueprint('joystick', __name__)
 
-@JOYSTICK_BP.route('/autonomous-mode', methods=['POST'])
-def setAutonomousMode():
-    """
-        Endpoint function responsible for switching the car's mode to the autonomous.
-    """
-    
-    VEHICLE.set_autonomous_mode()
-    
-    return Response('Successfully set the autonomous mode!', status=200, mimetype='application/json')
-
-@JOYSTICK_BP.route('/manual-mode', methods=['POST'])
-def setManualMode():
-    """
-        Endpoint function responsible for switching the car's mode to the manual.
-    """
-    
-    VEHICLE.set_manual_mode()
-
-    return Response('Successfully set the manual mode!', status=200, mimetype='application/json')
-
-
 @JOYSTICK_BP.route('/forward', methods=['POST'])
 def driveForward():
     """
