@@ -19,7 +19,7 @@ def video_feed():
     def generate():
         camera = cv2.VideoCapture(0)
         while True:
-                camera = camera.read()
+                frame = camera.read()
                 #frame = VEHICLE.camera().capture_array()
                 ret, buffer = cv2.imencode('.jpg', frame)
                 frame = buffer.tobytes()
