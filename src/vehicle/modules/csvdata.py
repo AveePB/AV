@@ -64,7 +64,7 @@ class CSVManager:
         """
 
         # Safety check
-        if (maneuver == None or degrees == None or len(degrees) != 360): return False
+        if (maneuver == None or len(degrees) != 360): return False
 
         # Create basic row structure
         new_scan = {

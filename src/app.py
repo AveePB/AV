@@ -9,17 +9,17 @@ app.register_blueprint(JOYSTICK_BP)
 app.register_blueprint(ROUTES_BP)
 
 if (__name__ == '__main__'):
-#    flask_process = Process(target=app.run)
-#    flask_process.start()
+    flask_process = Process(target=app.run)
+    flask_process.start()
 
     robot = Robot('test.csv', '/dev/ttyUSB0')
     robot_process = Process(target=robot.run)
     robot_process.start()
 
     robot_process.join(5)
-#    flask_process.join(5)
+    flask_process.join(5)
     
     robot_process.terminate()
-#    flask_process.terminate()
+    flask_process.terminate()
 
     robot.stop_lidar()
