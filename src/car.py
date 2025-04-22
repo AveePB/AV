@@ -38,7 +38,7 @@ class Robot:
         curr_maneuver = Maneuver.STOP
         is_autonumous = False
         ms.stop()
-
+        """
         # Analyze environemnt
         while True:
             # Try to access shared memory
@@ -65,7 +65,7 @@ class Robot:
             elif (curr_maneuver is Maneuver.GO_BOTTOM_RIGHT): ms.go_bottom_right()
             elif (curr_maneuver is Maneuver.TURN_LEFT): ms.turn_left()
             elif (curr_maneuver is Maneuver.TURN_RIGHT): ms.turn_right()
-        
+        """
         # Safely shutdown everything
         ms.stop()
         self.__lidar.stop()
