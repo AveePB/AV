@@ -38,7 +38,7 @@ class Robot:
         while self.is_running:
             scan = self.__lidar.read_single_measure()
             self.__csv_manager.create_record(VEHICLE.get_maneuver(), scan)
-            
+            print(VEHICLE.get_maneuver())
             if (VEHICLE.get_maneuver() is Maneuver.GO_FORWARD): ms.go_forward()
             elif (VEHICLE.get_maneuver() is Maneuver.GO_BACKWARD): ms.go_backward()
             elif (VEHICLE.get_maneuver() is Maneuver.STOP): ms.stop()
