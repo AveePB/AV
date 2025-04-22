@@ -1,5 +1,5 @@
 from vehicle.modules.csvdata import CSVManager
-from vehicle.modules.motors import Maneuver
+from vehicle.modules.flags import Maneuver
 import unittest
 
 class TestCSVManager(unittest.TestCase):

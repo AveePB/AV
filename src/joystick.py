@@ -1,4 +1,4 @@
-from vehicle.modules.motors import Maneuver
+from vehicle.modules.flags import Maneuver
 from vehicle.modules.v3hicle import Vehicle
 from flask import Blueprint, Response
 import multiprocessing

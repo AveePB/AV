@@ -1,4 +1,4 @@
-from vehicle.modules.motors import Maneuver
+from vehicle.modules.flags import Maneuver
 
 class Vehicle:
     """

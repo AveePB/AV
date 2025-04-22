@@ -1,5 +1,5 @@
 from vehicle.modules.v3hicle import Vehicle
-from vehicle.modules.motors import Maneuver
+from vehicle.modules.flags import Maneuver
 import unittest
 
 class TestVehicle(unittest.TestCase):

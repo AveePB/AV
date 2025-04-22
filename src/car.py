@@ -1,4 +1,4 @@
-from vehicle.modules.motors import MotorSystem, Maneuver
+from vehicle.modules.flags import Maneuver
 from vehicle.modules.csvdata import CSVManager
 from vehicle.lib.rplidar import RPLidar
 
@@ -26,6 +26,8 @@ class Robot:
         """
             Starts the application of the car.
         """
+        from vehicle.modules.motors import MotorSystem
+
         # Start the robot
         ms = MotorSystem()
         self.__lidar.connect()
