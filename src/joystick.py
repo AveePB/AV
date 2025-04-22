@@ -10,11 +10,13 @@ def driveForward():
         Endpoint function responsible for correction of the maneuver to go forward.
     """
     
-    if (VEHICLE.is_autonomous()):
+    VEHICLE2 = Vehicle()
+
+    if (VEHICLE2.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_forward()
+        VEHICLE2.drive_system().go_forward()
     except Exception:
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
