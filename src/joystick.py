@@ -2,7 +2,7 @@ from vehicle.modules.v3hicle import Vehicle
 from flask import Blueprint, Response
 
 JOYSTICK_BP = Blueprint('joystick', __name__)
-VEHICLE = Vehicle()
+VEHICLE = None
 
 @JOYSTICK_BP.route('/forward', methods=['POST'])
 def driveForward():
@@ -10,13 +10,11 @@ def driveForward():
         Endpoint function responsible for correction of the maneuver to go forward.
     """
     
-    VEHICLE2 = Vehicle()
-
-    if (VEHICLE2.is_autonomous()):
+    if (VEHICLE.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE2.drive_system().go_forward()
+        VEHICLE.drive_system().go_forward()
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')

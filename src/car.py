@@ -1,4 +1,4 @@
-from vehicle.modules.v3hicle import Vehicle
+from vehicle.modules.motors import MotorSystem
 from vehicle.modules.csvdata import CSVManager
 from vehicle.lib.rplidar import RPLidar
 from joystick import VEHICLE
@@ -27,6 +27,9 @@ class Robot:
         """
             Starts the application of the car.
         """
+        ms = MotorSystem()
+        ms.go_forward()
+
         self.__lidar.connect()
         self.__lidar.start_motor()
         self.__lidar.start()
