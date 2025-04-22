@@ -1,16 +1,15 @@
-from vehicle.modules.motors import MotorSystem
+from vehicle.modules.motors import Maneuver
 
 class Vehicle:
     """
-        Vehicle model is used to control all motors and sensor of the car. It also stores information about the mode of the car.    
+        Vehicle model is used to manage flags that are responsible for control of all motors and sensor of the car.    
     """
 
     def __init__(self):
         """
             Constructor responsible for correct initialization of the vehicle model.
         """
-
-        self.__motor_system = MotorSystem()
+        self.__current_maneuver = Maneuver.STOP
         self.__is_autonomous = False
 
     def set_autonomous_mode(self):
@@ -31,8 +30,18 @@ class Vehicle:
         """
         return self.__is_autonomous
     
-    def drive_system(self):
+    def set_maneuver(self, new_maneuver):
         """
-            Access function of object __motor_system.
+            Setter function of variable __current_maneuver.
         """
-        return self.__motor_system
+        if (type(new_maneuver) is Maneuver):
+            self.__current_maneuver = new_maneuver
+            return True
+        else:
+            return False
+
+    def get_maneuver(self):
+        """
+            Getter function of variable __current_maneuver
+        """
+        return self.__current_maneuver

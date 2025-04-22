@@ -1,4 +1,5 @@
 from vehicle.modules.v3hicle import Vehicle
+from vehicle.modules.motors import Maneuver
 import unittest
 
 class TestVehicle(unittest.TestCase):
@@ -15,11 +16,11 @@ class TestVehicle(unittest.TestCase):
         vehicle.set_manual_mode()
         self.assertFalse(vehicle.is_autonomous())
 
-        # Access detection system
-        self.assertIsNotNone(vehicle.camera())
+        # Set maneuver to go forwad
+        self.assertTrue(vehicle.set_maneuver(Maneuver.GO_FORWARD))
 
-        # Access drive system
-        self.assertIsNotNone(vehicle.drive_system())
+        # Set invalid maneuver
+        self.assertFalse(vehicle.set_maneuver(23))
 
 if (__name__ == '__main__'):
     unittest.main()

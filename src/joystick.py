@@ -1,8 +1,8 @@
-from vehicle.modules.v3hicle import Vehicle
+from vehicle.modules.motors import Maneuver
+from car import VEHICLE
 from flask import Blueprint, Response
 
 JOYSTICK_BP = Blueprint('joystick', __name__)
-VEHICLE = None
 
 @JOYSTICK_BP.route('/forward', methods=['POST'])
 def driveForward():
@@ -14,7 +14,7 @@ def driveForward():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_forward()
+        VEHICLE.set_maneuver(Maneuver.GO_FORWARD)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -32,7 +32,7 @@ def driveBackward():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_backward()
+        VEHICLE.set_maneuver(Maneuver.GO_BACKWARD)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -50,7 +50,7 @@ def stopDriving():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().stop()
+        VEHICLE.set_maneuver(Maneuver.STOP)
     except Exception as e:
         print(e)
         return Response('Failed to stop the car!', status=500, mimetype='application/json')
@@ -68,7 +68,7 @@ def driveLeft():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_left()
+        VEHICLE.set_maneuver(Maneuver.GO_LEFT)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -86,7 +86,7 @@ def driveRight():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_right()
+        VEHICLE.set_maneuver(Maneuver.GO_RIGHT)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -104,7 +104,7 @@ def driveTopLeft():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_top_left()
+        VEHICLE.set_maneuver(Maneuver.GO_TOP_LEFT)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -122,7 +122,7 @@ def driveTopRight():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_top_right()
+        VEHICLE.set_maneuver(Maneuver.GO_TOP_RIGHT)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -140,7 +140,7 @@ def driveBottomLeft():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_bottom_left()
+        VEHICLE.set_maneuver(Maneuver.GO_BOTTOM_LEFT)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -158,7 +158,7 @@ def driveBottomRight():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().go_bottom_right()
+        VEHICLE.set_maneuver(Maneuver.GO_BOTTOM_RIGHT)
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -176,7 +176,7 @@ def turnLeft():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().turn_left()
+        VEHICLE.set_maneuver(Maneuver.TURN_LEFT)
     except Exception as e:
         print(e)
         return Response('Failed to change the maneuver of the car to turn left!', status=500, mimetype='application/json')
@@ -194,7 +194,7 @@ def turnRight():
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.drive_system().turn_right()
+        VEHICLE.set_maneuver(Maneuver.TURN_RIGHT)
     except Exception as e:
         print(e)
         return Response('Failed to change the maneuver of the car to turn right!', status=500, mimetype='application/json')

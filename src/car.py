@@ -1,7 +1,9 @@
 from vehicle.modules.motors import MotorSystem
 from vehicle.modules.csvdata import CSVManager
+from vehicle.modules.v3hicle import Vehicle
 from vehicle.lib.rplidar import RPLidar
-from joystick import VEHICLE
+
+VEHICLE = Vehicle()
 
 class Robot:
     """
@@ -29,14 +31,13 @@ class Robot:
         """
         ms = MotorSystem()
         ms.go_forward()
-
         self.__lidar.connect()
         self.__lidar.start_motor()
         self.__lidar.start()
 
         while True:
             scan = self.__lidar.read_single_measure()
-            self.__csv_manager.create_record(VEHICLE.drive_system().get_maneuver(), scan)
+            self.__csv_manager.create_record(ms.get_maneuver(), scan)
             
     
     def stop_lidar(self):
