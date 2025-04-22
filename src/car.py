@@ -1,4 +1,4 @@
-from vehicle.modules.motors import MotorSystem
+from vehicle.modules.motors import MotorSystem, Maneuver
 from vehicle.modules.csvdata import CSVManager
 from vehicle.modules.v3hicle import Vehicle
 from vehicle.lib.rplidar import RPLidar
@@ -31,14 +31,26 @@ class Robot:
             Starts the application of the car.
         """
         ms = MotorSystem()
-        ms.go_forward()
         self.__lidar.connect()
         self.__lidar.start_motor()
         self.__lidar.start()
 
         while self.is_running:
             scan = self.__lidar.read_single_measure()
-            self.__csv_manager.create_record(ms.get_maneuver(), scan)
+            self.__csv_manager.create_record(VEHICLE.get_maneuver(), scan)
+            
+            if (VEHICLE.get_maneuver() is Maneuver.GO_FORWARD): ms.go_forward()
+            elif (VEHICLE.get_maneuver() is Maneuver.GO_BACKWARD): ms.go_backward()
+            elif (VEHICLE.get_maneuver() is Maneuver.STOP): ms.stop()
+            elif (VEHICLE.get_maneuver() is Maneuver.GO_LEFT): ms.go_left()
+            elif (VEHICLE.get_maneuver() is Maneuver.GO_RIGHT): ms.go_right()
+            elif (VEHICLE.get_maneuver() is Maneuver.GO_TOP_LEFT): ms.go_top_left()
+            elif (VEHICLE.get_maneuver() is Maneuver.GO_TOP_RIGHT): ms.go_top_right()
+            elif (VEHICLE.get_maneuver() is Maneuver.GO_BOTTOM_LEFT): ms.go_bottom_left()
+            elif (VEHICLE.get_maneuver() is Maneuver.GO_BOTTOM_RIGHT): ms.go_bottom_right()
+            elif (VEHICLE.get_maneuver() is Maneuver.TURN_LEFT): ms.turn_left()
+            elif (VEHICLE.get_maneuver() is Maneuver.TURN_RIGHT): ms.turn_right()
+        
         ms.stop()
             
     
