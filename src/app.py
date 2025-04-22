@@ -20,8 +20,8 @@ if (__name__ == '__main__'):
     robot_process.start()
 
     robot_process.join(APP_EXECUTION_TIME)
-    flask_process.join(1)
-    
+
+    robot.is_running = False
     flask_process.terminate()
 
     robot.stop_lidar()

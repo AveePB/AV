@@ -21,6 +21,7 @@ class Robot:
 
         self.__csv_manager = CSVManager(file_path)
         self.__lidar = RPLidar(lidar_header)
+        self.is_running = True
         
         print(self.__lidar.get_info())
         print(self.__lidar.get_health())
@@ -35,7 +36,7 @@ class Robot:
         self.__lidar.start_motor()
         self.__lidar.start()
 
-        while True:
+        while self.is_running:
             scan = self.__lidar.read_single_measure()
             self.__csv_manager.create_record(ms.get_maneuver(), scan)
             
