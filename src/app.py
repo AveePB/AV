@@ -5,7 +5,7 @@ from car import Robot
 from multiprocessing import Process
 from flask import Flask
 
-APP_EXECUTION_TIME = 600 # seconds
+APP_EXECUTION_TIME = 60 # seconds
 
 app = Flask(__name__)
 app.register_blueprint(JOYSTICK_BP)
