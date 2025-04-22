@@ -42,12 +42,13 @@ class Robot:
         while True:
 
             # Try to access shared memory
-            if (not(is_autonumous) and not(data_queue.empty())):
+            if (not(data_queue.empty())):
                 is_autonumous, is_running, curr_maneuver = data_queue.get() 
                 if (not is_running): break
             
             # Ask ML model
-            else: pass 
+            if (is_autonumous):
+                pass 
 
             """
             # Read/write data
