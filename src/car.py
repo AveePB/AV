@@ -1,7 +1,7 @@
 from vehicle.modules.flags import Maneuver
 from vehicle.modules.csvdata import CSVManager
 from vehicle.lib.rplidar import RPLidar
-import time
+
 class Robot:
     """
         Robot object is responsible for data collecting and autonomous driving
@@ -22,7 +22,7 @@ class Robot:
         print(self.__lidar.get_info())
         print(self.__lidar.get_health())
 
-    def run(self):
+    def run(self, data_queue):
         """
             Starts the application of the car.
         """
@@ -37,11 +37,9 @@ class Robot:
         # Prepare the car
         curr_maneuver = Maneuver.STOP
         is_autonumous = False
-        ms.go_forward()
-        time.sleep(10)
+
         # Analyze environemnt
-        """    
-        while True: pass
+        while True:
 
             # Try to access shared memory
             if (not(is_autonumous) and not(data_queue.empty())):
@@ -67,7 +65,7 @@ class Robot:
             elif (curr_maneuver is Maneuver.GO_BOTTOM_RIGHT): ms.go_bottom_right()
             elif (curr_maneuver is Maneuver.TURN_LEFT): ms.turn_left()
             elif (curr_maneuver is Maneuver.TURN_RIGHT): ms.turn_right()
-        """
+
         # Safely shutdown everything
         ms.stop()
         self.__lidar.stop()
