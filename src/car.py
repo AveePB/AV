@@ -38,9 +38,10 @@ class Robot:
         curr_maneuver = Maneuver.STOP
         is_autonumous = False
         ms.stop()
-        
+        i = 10000
         # Analyze environemnt
-        while True:
+        while i:
+            i-=1
             # Try to access shared memory
             if (not(is_autonumous) and not(data_queue.empty())):
                 is_autonumous, is_running, curr_maneuver = data_queue.get() 
@@ -52,7 +53,7 @@ class Robot:
             # Read/write data
             scan = self.__lidar.read_single_measure()
             self.__csv_manager.create_record(curr_maneuver, scan)
-            print("CURRENT MANEUVER:", curr_maneuver)
+            print("CURRENT MANEUVER:", curr_maneuver); 
             """    
             # Perform the maneuver
             if (curr_maneuver is Maneuver.GO_FORWARD): ms.go_forward()
