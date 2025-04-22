@@ -17,7 +17,8 @@ def driveForward():
     
     try:
         VEHICLE2.drive_system().go_forward()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to forward!', status=200, mimetype='application/json')
@@ -34,7 +35,8 @@ def driveBackward():
     
     try:
         VEHICLE.drive_system().go_backward()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to backward!', status=200, mimetype='application/json')
@@ -51,7 +53,8 @@ def stopDriving():
     
     try:
         VEHICLE.drive_system().stop()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to stop the car!', status=500, mimetype='application/json')
     
     return Response('Successfully stopped the car!', status=200, mimetype='application/json')
@@ -68,7 +71,8 @@ def driveLeft():
     
     try:
         VEHICLE.drive_system().go_left()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to Left!', status=200, mimetype='application/json')
@@ -85,7 +89,8 @@ def driveRight():
     
     try:
         VEHICLE.drive_system().go_right()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to right!', status=200, mimetype='application/json')
@@ -102,7 +107,8 @@ def driveTopLeft():
     
     try:
         VEHICLE.drive_system().go_top_left()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to top left!', status=200, mimetype='application/json')
@@ -119,7 +125,8 @@ def driveTopRight():
     
     try:
         VEHICLE.drive_system().go_top_right()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to top right!', status=200, mimetype='application/json')
@@ -136,7 +143,8 @@ def driveBottomLeft():
     
     try:
         VEHICLE.drive_system().go_bottom_left()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to bottom left!', status=200, mimetype='application/json')
@@ -153,7 +161,8 @@ def driveBottomRight():
     
     try:
         VEHICLE.drive_system().go_bottom_right()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
     
     return Response('Successfully set direction of the car to bottom right!', status=200, mimetype='application/json')
@@ -170,7 +179,8 @@ def turnLeft():
     
     try:
         VEHICLE.drive_system().turn_left()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the maneuver of the car to turn left!', status=500, mimetype='application/json')
     
     return Response('Successfully set maveuver of the car to turn left', status=200, mimetype='application/json')
@@ -187,7 +197,8 @@ def turnRight():
     
     try:
         VEHICLE.drive_system().turn_right()
-    except Exception:
+    except Exception as e:
+        print(e)
         return Response('Failed to change the maneuver of the car to turn right!', status=500, mimetype='application/json')
     
     return Response('Successfully set maveuver of the car to turn right', status=200, mimetype='application/json')
