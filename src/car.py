@@ -22,7 +22,7 @@ class Robot:
         print(self.__lidar.get_info())
         print(self.__lidar.get_health())
 
-    def run(self, data_queue):
+    def run(self):
         """
             Starts the application of the car.
         """
