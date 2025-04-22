@@ -39,6 +39,7 @@ class Robot:
         while self.is_running:
             scan = self.__lidar.read_single_measure()
             self.__csv_manager.create_record(ms.get_maneuver(), scan)
+        ms.stop()
             
     
     def stop_lidar(self):
