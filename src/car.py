@@ -49,11 +49,12 @@ class Robot:
             # Ask ML model
             else: pass 
 
+            """
             # Read/write data
             scan = self.__lidar.read_single_measure()
             self.__csv_manager.create_record(curr_maneuver, scan)
-
-                        # Perform the maneuver
+            """
+            # Perform the maneuver
             if (curr_maneuver is Maneuver.GO_FORWARD): ms.go_forward()
             elif (curr_maneuver is Maneuver.GO_BACKWARD): ms.go_backward()
             elif (curr_maneuver is Maneuver.STOP): ms.stop()
