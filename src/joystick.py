@@ -1,20 +1,23 @@
 from vehicle.modules.motors import Maneuver
-from car import VEHICLE
+from vehicle.modules.v3hicle import Vehicle
 from flask import Blueprint, Response
+import multiprocessing
 
 JOYSTICK_BP = Blueprint('joystick', __name__)
+VEHICLE_DATA = Vehicle()
+DATA_QUEUE = multiprocessing.Queue()
 
 @JOYSTICK_BP.route('/forward', methods=['POST'])
 def driveForward():
     """
         Endpoint function responsible for correction of the maneuver to go forward.
     """
-    
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_FORWARD)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_FORWARD)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -28,11 +31,12 @@ def driveBackward():
         Endpoint function responsible for correction of the maneuver to go backward.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_BACKWARD)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_BACKWARD)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -46,11 +50,12 @@ def stopDriving():
         Endpoint function responsible for correction of the maneuver to stop driving.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.STOP)
+        VEHICLE_DATA.set_maneuver(Maneuver.STOP)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to stop the car!', status=500, mimetype='application/json')
@@ -64,11 +69,12 @@ def driveLeft():
         Endpoint function responsible for correction of the maneuver to go left.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_LEFT)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_LEFT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -82,11 +88,12 @@ def driveRight():
         Endpoint function responsible for correction of the maneuver to go right.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_RIGHT)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_RIGHT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -100,11 +107,12 @@ def driveTopLeft():
         Endpoint function responsible for correction of the maneuver to go top-left.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_TOP_LEFT)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_TOP_LEFT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -118,11 +126,12 @@ def driveTopRight():
         Endpoint function responsible for correction of the maneuver to go top-right.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_TOP_RIGHT)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_TOP_RIGHT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -136,11 +145,12 @@ def driveBottomLeft():
         Endpoint function responsible for correction of the maneuver to go bottom-left.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_BOTTOM_LEFT)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_BOTTOM_LEFT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -154,11 +164,12 @@ def driveBottomRight():
         Endpoint function responsible for correction of the maneuver to go bottom-right.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.GO_BOTTOM_RIGHT)
+        VEHICLE_DATA.set_maneuver(Maneuver.GO_BOTTOM_RIGHT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the direction of the car!', status=500, mimetype='application/json')
@@ -172,11 +183,12 @@ def turnLeft():
         Endpoint function responsible for correction of the maneuver to turn left.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.TURN_LEFT)
+        VEHICLE_DATA.set_maneuver(Maneuver.TURN_LEFT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the maneuver of the car to turn left!', status=500, mimetype='application/json')
@@ -190,11 +202,12 @@ def turnRight():
         Endpoint function responsible for correction of the maneuver to turn right.
     """
 
-    if (VEHICLE.is_autonomous()):
+    if (VEHICLE_DATA.is_autonomous()):
         return Response('The vehicle is in autonomous mode!', status=400, mimetype='application/json')
     
     try:
-        VEHICLE.set_maneuver(Maneuver.TURN_RIGHT)
+        VEHICLE_DATA.set_maneuver(Maneuver.TURN_RIGHT)
+        DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
     except Exception as e:
         print(e)
         return Response('Failed to change the maneuver of the car to turn right!', status=500, mimetype='application/json')

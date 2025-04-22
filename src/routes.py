@@ -1,4 +1,4 @@
-from car import VEHICLE
+from joystick import VEHICLE_DATA, DATA_QUEUE
 from flask import render_template, Blueprint, Response
 import cv2
 
@@ -10,7 +10,9 @@ def index():
         Endpoint function that return the page.
     """
 
-    VEHICLE.set_manual_mode()
+    VEHICLE_DATA.set_manual_mode()
+    DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
+
     return render_template('index.html')
 
 @ROUTES_BP.route('/video_feed', methods=['GET'])
@@ -40,7 +42,8 @@ def setAutonomousMode():
         Endpoint function responsible for switching the car's mode to the autonomous.
     """
     
-    VEHICLE.set_autonomous_mode()
+    VEHICLE_DATA.set_autonomous_mode()
+    DATA_QUEUE.put((True, True, VEHICLE_DATA.get_maneuver()))
     
     return Response('Successfully set the autonomous mode!', status=200, mimetype='application/json')
 
@@ -50,6 +53,7 @@ def setManualMode():
         Endpoint function responsible for switching the car's mode to the manual.
     """
     
-    VEHICLE.set_manual_mode()
+    VEHICLE_DATA.set_manual_mode()
+    DATA_QUEUE.put((False, True, VEHICLE_DATA.get_maneuver()))
 
     return Response('Successfully set the manual mode!', status=200, mimetype='application/json')

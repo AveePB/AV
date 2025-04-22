@@ -36,11 +36,9 @@ class Vehicle:
         """
         if (type(new_maneuver) is Maneuver):
             self.__current_maneuver = new_maneuver
-            print("Successfully set new maneuver")
             print(new_maneuver)
             return True
         else:
-            print("Failed to set maneuver")
             return False
 
     def get_maneuver(self):
