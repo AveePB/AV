@@ -1,4 +1,3 @@
-from vehicle.modules.camera import Camera
 from vehicle.modules.motors import MotorSystem
 
 class Vehicle:
@@ -11,8 +10,6 @@ class Vehicle:
             Constructor responsible for correct initialization of the vehicle model.
         """
 
-        #self.__camera = Camera()
-        #self.__camera.start()
         self.__motor_system = MotorSystem()
         self.__is_autonomous = False
 
@@ -33,12 +30,6 @@ class Vehicle:
             Getter function of variable __is_autonomous.
         """
         return self.__is_autonomous
-    
-    #def camera(self):
-    #    """
-    #        Access function of object __detection_system.
-    #    """
-    #    return self.__camera
     
     def drive_system(self):
         """
