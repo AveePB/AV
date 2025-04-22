@@ -1,8 +1,7 @@
 from vehicle.modules.v3hicle import Vehicle
 from vehicle.modules.csvdata import CSVManager
 from vehicle.lib.rplidar import RPLidar
-
-VEHICLE = Vehicle()
+from joystick import VEHICLE
 
 class Robot:
     """

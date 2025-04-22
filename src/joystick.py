@@ -1,7 +1,8 @@
-from car import VEHICLE
+from vehicle.modules.v3hicle import Vehicle
 from flask import Blueprint, Response
 
 JOYSTICK_BP = Blueprint('joystick', __name__)
+VEHICLE = Vehicle()
 
 @JOYSTICK_BP.route('/forward', methods=['POST'])
 def driveForward():
