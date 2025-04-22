@@ -4,7 +4,6 @@ from routes import ROUTES_BP
 from car import Robot
 from multiprocessing import Process
 from flask import Flask
-import time 
 
 APP_EXECUTION_TIME = 10 # seconds
 
@@ -17,12 +16,7 @@ if (__name__ == '__main__'):
     flask_process.start()
 
     robot = Robot(LIDAR_DATA_PATH, LIDAR_USB_HEADER)
-    robot_process = Process(target=robot.run)
-    robot_process.start()
-    time.sleep(APP_EXECUTION_TIME)
-    
-    robot.is_running = False
-    flask_process.terminate()
+    robot.run()
 
-    robot.stop_lidar()
-    
+    flask_process.terminate()
+    robot.stop_lidar()    
