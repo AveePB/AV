@@ -39,7 +39,7 @@ class Robot:
         is_autonumous = False
 
         # Analyze environemnt
-        while True:
+        for i, scan in enumerate(self.__lidar.iter_scans()):
 
             # Try to access shared memory
             if (not(data_queue.empty())):
@@ -49,12 +49,10 @@ class Robot:
             # Ask ML model
             if (is_autonumous):
                 pass 
-
-            """
-            # Read/write data
-            scan = self.__lidar.read_single_measure()
+            
+            # Save scan info
             self.__csv_manager.create_record(curr_maneuver, scan)
-            """
+
             # Perform the maneuver
             if (curr_maneuver is Maneuver.GO_FORWARD): ms.go_forward()
             elif (curr_maneuver is Maneuver.GO_BACKWARD): ms.go_backward()
