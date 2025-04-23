@@ -1,4 +1,5 @@
-from vehicle.modules.motors import MotorSystem, Maneuver
+from vehicle.modules.motors import MotorSystem
+from vehicle.modules.flags import Maneuver
 import unittest
 import time
 

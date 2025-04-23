@@ -1,7 +1,8 @@
 from vehicle.modules.v3hicle import Vehicle
+from vehicle.modules.flags import Maneuver
 import unittest
 
-class TestMotorSystem(unittest.TestCase):
+class TestVehicle(unittest.TestCase):
 
     def test_accessing_variables(self):
         # Initialize vehilce
@@ -15,11 +16,11 @@ class TestMotorSystem(unittest.TestCase):
         vehicle.set_manual_mode()
         self.assertFalse(vehicle.is_autonomous())
 
-        # Access detection system
-        self.assertIsNotNone(vehicle.detection_system())
+        # Set maneuver to go forwad
+        self.assertTrue(vehicle.set_maneuver(Maneuver.GO_FORWARD))
 
-        # Access drive system
-        self.assertIsNotNone(vehicle.drive_system())
+        # Set invalid maneuver
+        self.assertFalse(vehicle.set_maneuver(23))
 
 if (__name__ == '__main__'):
     unittest.main()

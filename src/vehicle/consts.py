@@ -27,3 +27,5 @@ IMG_SIZE = (1920, 1080)
 LIDAR_USB_HEADER = '/dev/ttyUSB0'
 LIDAR_SCAN_SIZE = 360
 LIADR_N_SCANS = 3
+
+LIDAR_DATA_PATH = './data/lidar-data.csv'
