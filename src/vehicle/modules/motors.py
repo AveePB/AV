@@ -1,32 +1,7 @@
 from gpiozero import Motor
 from enum import Enum
 from vehicle.consts import MOTOR_SPEED, F_ENA, F_ENB, F_IN1, F_IN2, F_IN3, F_IN4, B_ENA, B_ENB, B_IN1, B_IN2, B_IN3, B_IN4
-
-class MotorDirection(Enum):
-    """
-        MotorDirection is an enum multichoice class. It is responsible for representing all possible states of the motor.
-    """
-
-    NONE = 0
-    FORWARD = 1
-    BACKWARD = -1
-
-class Maneuver(Enum):
-    """
-        Maneuver is an enum multichoice class. It is responsible for representing all possible maneuvers of the car.
-    """
-
-    STOP = 0
-    GO_FORWARD = 1
-    GO_BACKWARD = 2
-    GO_LEFT = 3
-    GO_RIGHT = 4
-    GO_TOP_LEFT = 5
-    GO_TOP_RIGHT = 6
-    GO_BOTTOM_LEFT = 7
-    GO_BOTTOM_RIGHT = 8
-    TURN_LEFT = 9
-    TURN_RIGHT = 10
+from vehicle.modules.flags import MotorDirection, Maneuver
 
 class DCMotor(Motor):
     """

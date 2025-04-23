@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Controller</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="status" id="status">Status: Ready</div>
+        <div class="mode-switch">
+            <button id="modeToggle" class="mode-button manual">Manual Mode</button>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <img id="videoStream" src="{{ url_for('routes.video_feed') }}" alt="Live Feed">
+    </div>
+
+    <div class="controller-container">
+        <button class="turn-button left" id="turnLeft">↶ Left</button>
+        
+        <div class="joystick-container" id="joystick-container">
+            <div class="joystick-base"></div>
+            <div class="joystick-thumb" id="joystick"></div>
+        </div>
+        
+        <button class="turn-button right" id="turnRight">↷ Right</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='joystick.js') }}"></script>
+</body>
+</html>
