@@ -40,7 +40,7 @@ class Robot:
 
         # Analyze environemnt
         for i, scan in enumerate(self.__lidar.iter_scans()):
-
+            print(scan)
             # Try to access shared memory
             if (not(data_queue.empty())):
                 is_autonumous, is_running, curr_maneuver = data_queue.get() 
