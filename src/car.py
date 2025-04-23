@@ -16,11 +16,8 @@ class Robot:
                 lidar_header (str): system path to the usb header.
         """
 
-        self.__csv_manager = CSVManager(file_path)
-        self.__lidar = RPLidar(lidar_header)
-        
-        print(self.__lidar.get_info())
-        print(self.__lidar.get_health())
+        self.__file_path = file_path
+        self.__lidar_header = lidar_header
 
     def run(self, data_queue):
         """
@@ -30,16 +27,19 @@ class Robot:
 
         # Start the robot
         ms = MotorSystem()
-        self.__lidar.connect()
-        self.__lidar.start_motor()
-        self.__lidar.start()
+        lidar = RPLidar(self.__lidar_header)
+        csv_manager = CSVManager(self.__file_path)
+
+        # Show lidar info
+        print(lidar.get_info())
+        print(lidar.get_health())
 
         # Prepare the car
         curr_maneuver = Maneuver.STOP
         is_autonumous = False
 
         # Analyze environemnt
-        while True:
+        for i, scan in enumerate(lidar.iter_scans()):
 
             # Try to access shared memory
             if (not(data_queue.empty())):
@@ -49,12 +49,10 @@ class Robot:
             # Ask ML model
             if (is_autonumous):
                 pass 
+            
+            # Save scan info
+            csv_manager.create_record(curr_maneuver, scan)
 
-            """
-            # Read/write data
-            scan = self.__lidar.read_single_measure()
-            self.__csv_manager.create_record(curr_maneuver, scan)
-            """
             # Perform the maneuver
             if (curr_maneuver is Maneuver.GO_FORWARD): ms.go_forward()
             elif (curr_maneuver is Maneuver.GO_BACKWARD): ms.go_backward()
@@ -70,6 +68,6 @@ class Robot:
 
         # Safely shutdown everything
         ms.stop()
-        self.__lidar.stop()
-        self.__lidar.stop_motor()
-        self.__lidar.disconnect()
+        lidar.stop()
+        lidar.stop_motor()
+        lidar.disconnect()
