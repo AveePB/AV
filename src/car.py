@@ -30,13 +30,9 @@ class Robot:
         lidar = RPLidar(self.__lidar_header)
         csv_manager = CSVManager(self.__file_path)
 
-        # Prepare lidar
+        # Show lidar info
         print(lidar.get_info())
         print(lidar.get_health())
-
-        lidar.connect()
-        lidar.start_motor()
-        lidar.start()
 
         # Prepare the car
         curr_maneuver = Maneuver.STOP
@@ -44,7 +40,9 @@ class Robot:
 
         # Analyze environemnt
         for i, scan in enumerate(lidar.iter_scans()):
+            # Show the scan
             print(scan)
+
             # Try to access shared memory
             if (not(data_queue.empty())):
                 is_autonumous, is_running, curr_maneuver = data_queue.get() 
