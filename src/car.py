@@ -40,8 +40,6 @@ class Robot:
 
         # Analyze environemnt
         for i, scan in enumerate(lidar.iter_scans()):
-            # Show the scan
-            print(scan)
 
             # Try to access shared memory
             if (not(data_queue.empty())):
