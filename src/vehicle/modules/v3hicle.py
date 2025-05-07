@@ -1,4 +1,4 @@
-from vehicle.modules.flags import Maneuver
+from vehicle.modules.flags import Maneuver, CarMode
 
 class Vehicle:
     """
@@ -10,25 +10,37 @@ class Vehicle:
             Constructor responsible for correct initialization of the vehicle model.
         """
         self.__current_maneuver = Maneuver.STOP
-        self.__is_autonomous = False
-
-    def set_autonomous_mode(self):
-        """
-            Setter function of variable __is_autonomous.
-        """
-        self.__is_autonomous = True
+        self.__current_mode = CarMode.MANUAL
 
     def set_manual_mode(self):
         """
-            Setter function of variable __is_autonomous.
+            Setter function of variable __is_current_mode.
         """
-        self.__is_autonomous = False
+        self.__current_mode = CarMode.MANUAL
+
+    def set_line_follower_mode(self):
+        """
+            Setter function of variable __is_current_mode.
+        """
+        self.__current_mode = CarMode.LINE_FOLLOWER
+    
+    def set_autonomous_mode(self):
+        """
+            Setter function of variable __current_mode.
+        """
+        self.__current_mode = CarMode.AUTONOMOUS_VEHICLE
+    
+    def get_mode(self):
+        """
+            Getter function of variable __current_mode
+        """
+        return self.__current_mode
 
     def is_autonomous(self):
         """
-            Getter function of variable __is_autonomous.
+            Getter function of variable __current_mode.
         """
-        return self.__is_autonomous
+        return not(self.__current_mode is CarMode.MANUAL)
     
     def set_maneuver(self, new_maneuver):
         """
@@ -36,7 +48,7 @@ class Vehicle:
         """
         if (type(new_maneuver) is Maneuver):
             self.__current_maneuver = new_maneuver
-            print(new_maneuver)
+            #print(new_maneuver)
             return True
         else:
             return False
