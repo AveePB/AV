@@ -53,7 +53,6 @@ class Robot:
             
             # Save scan info
             csv_manager.create_record(curr_maneuver, scan)
-            print (curr_mode, is_running, curr_maneuver)
 
             # Perform the maneuver
             if (curr_maneuver is Maneuver.GO_FORWARD): ms.go_forward()
