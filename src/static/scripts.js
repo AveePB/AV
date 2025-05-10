@@ -98,30 +98,30 @@ joystick.on('end', () => {
   resetLastDirection();
 });
 
-// Buttons
 function handleTurnButton(btnSelector, directionEndpoint) {
   const button = document.querySelector(btnSelector);
-
-  button.addEventListener('mousedown', () => {
-    fetch(directionEndpoint, { method: 'POST' });
-  });
-
-  button.addEventListener('mouseup', () => {
-    fetch('/stop', { method: 'POST' });
-  });
+  let touchHandled = false;
 
   button.addEventListener('touchstart', () => {
+    touchHandled = true;
     fetch(directionEndpoint, { method: 'POST' });
   });
 
   button.addEventListener('touchend', () => {
     fetch('/stop', { method: 'POST' });
+    setTimeout(() => touchHandled = false, 100); // reset flag shortly after
+  });
+
+  button.addEventListener('mousedown', () => {
+    if (touchHandled) return;
+    fetch(directionEndpoint, { method: 'POST' });
+  });
+
+  button.addEventListener('mouseup', () => {
+    if (touchHandled) return;
+    fetch('/stop', { method: 'POST' });
   });
 }
-
-// Apply to turn buttons
-handleTurnButton('.turn-left', '/turn-left');
-handleTurnButton('.turn-right', '/turn-right');
 
 document.querySelector('.shutdown').addEventListener('click', () => {
   if (confirm("Are you sure you want to shut down the electronic components of the robot?")) {
@@ -136,3 +136,7 @@ document.querySelector('.shutdown').addEventListener('click', () => {
     }).catch(console.error);
   }
 });
+
+// Apply handlers to turn buttons
+handleTurnButton('.turn-left', '/turn-left');
+handleTurnButton('.turn-right', '/turn-right');
