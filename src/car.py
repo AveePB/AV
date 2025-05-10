@@ -37,6 +37,7 @@ class Robot:
         # Prepare the car
         curr_maneuver = Maneuver.STOP
         curr_mode = CarMode.MANUAL
+        is_running = True
 
         # Analyze environemnt
         for i, scan in enumerate(lidar.iter_scans()):
@@ -53,7 +54,7 @@ class Robot:
             # Save scan info
             csv_manager.create_record(curr_maneuver, scan)
             print (curr_mode, is_running, curr_maneuver)
-            
+
             # Perform the maneuver
             if (curr_maneuver is Maneuver.GO_FORWARD): ms.go_forward()
             elif (curr_maneuver is Maneuver.GO_BACKWARD): ms.go_backward()
