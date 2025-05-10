@@ -79,14 +79,16 @@ joystick.on('move', (evt, data) => {
   const angle = data.angle.degree;
   let direction = null;
 
-  if (angle >= 337.5 || angle < 22.5) direction = 'right'; 
-  else if (angle < 67.5) direction = 'top-right';
-  else if (angle < 112.5) direction = 'forward'; 
-  else if (angle < 157.5) direction = 'top-left';
-  else if (angle < 202.5) direction = 'left';
-  else if (angle < 247.5) direction = 'bottom-left'; 
-  else if (angle < 292.5) direction = 'backward';
-  else direction = 'bottom-right';
+  if (angle >= 337.5 || angle < 22.5) direction = 'right';
+  else if (angle >= 22.5 && angle < 67.5) direction = 'top-right';
+  else if (angle >= 67.5 && angle < 112.5) direction = 'forward';
+  else if (angle >= 112.5 && angle < 157.5) direction = 'top-left';
+  else if (angle >= 157.5 && angle < 202.5) direction  = 'left';
+  else if (angle >= 202.5 && angle < 247.5) direction = 'bottom-left';
+  else if (angle >= 247.5 && angle < 292.5) direction = 'backward';
+  else if (angle >= 292.5 && angle < 337.5) direction = 'bottom-right';
+
+  if (direction == null) direction = 'stop';
 
   sendJoystickDirection(direction);
 });
