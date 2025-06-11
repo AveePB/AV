@@ -25,3 +25,12 @@ class Maneuver(Enum):
     GO_BOTTOM_RIGHT = 8
     TURN_LEFT = 9
     TURN_RIGHT = 10
+
+class CarMode(Enum):
+    """
+        CarMode is an eunum multichoice class. It is responsible for representing all possible car modes.
+    """
+
+    MANUAL = 0
+    LINE_FOLLOWER = 1
+    AUTONOMOUS_VEHICLE = 2

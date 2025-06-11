@@ -1,208 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #f0f0f0;
-    touch-action: none;
-    font-family: Arial, sans-serif;
-    user-select: none;
-    -webkit-user-select: none;
-    overflow-x: hidden;
+  background: linear-gradient(to bottom right, #1e1e1e, #2c2c2c);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  touch-action: manipulation;
 }
 
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: rgba(255,255,255,0.95);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    z-index: 1000;
+header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.status {
-    font-weight: bold;
-    color: #333;
-    margin-right: 20px;
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
-.mode-switch {
-    margin-left: auto;
+#joystick-container {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  touch-action: none;
 }
 
-.mode-button {
-    padding: 10px 20px;
-    border-radius: 25px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    font-size: 14px;
+.actions {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.mode-button.manual {
-    background-color: #3a6ea5;
-    color: white;
+.actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s, transform 0.2s;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
 }
 
-.mode-button.autonomous {
-    background-color: #2ecc71;
-    color: white;
+.actions button:active {
+  transform: scale(0.9);
 }
 
-/* Simple Video Container */
-.video-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 70px auto 20px;
-    background: #444;
-    text-align: center;
+.actions .turn-left {
+  background-color: #ff3b30;
+  color: white;
 }
 
-.video-container img {
-    width: 100%;
-    height: auto;
-    max-height: 60vh;
-    display: block;
+.actions .turn-right {
+  background-color: #007aff;
+  color: white;
 }
 
-/* Controller Styles */
-.controller-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 800px;
+.actions .shutdown {
+  background-color: #8e8e93;
+  color: white;
 }
 
-.joystick-container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    touch-action: none;
+.actions .shutdown:hover {
+  background-color: #ff2d55;
 }
 
-.joystick-base {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #444;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+footer {
+  background: rgba(255, 255, 255, 0.05);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
 }
 
-.joystick-thumb {
-    position: absolute;
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+  }
+
+  body {
+    min-height: 93vh;
+  }
+
+  .actions button {
     width: 60px;
     height: 60px;
-    background-color: #888;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.2s ease-out;
-    touch-action: none;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    box-sizing: border-box;
-    z-index: 10;
-}
+    font-size: 1.5rem;
+  }
 
-.joystick-thumb.active {
-    background-color: #aaa;
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
-
-.joystick-thumb.at-boundary {
-    background-color: #ccc;
-    box-shadow: 0 0 15px rgba(255,100,100,0.7);
-}
-
-.turn-button {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: none;
-    background-color: #555;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: all 0.1s;
-    touch-action: manipulation;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.turn-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.turn-button:active:not(:disabled) {
-    transform: scale(0.95);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.turn-button.left {
-    background-color: #3a6ea5;
-}
-
-.turn-button.left:active:not(:disabled) {
-    background-color: #2d5a8a;
-}
-
-.turn-button.right {
-    background-color: #cc3333;
-}
-
-.turn-button.right:active:not(:disabled) {
-    background-color: #b32b2b;
-}
-
-/* Mobile Layout */
-@media (max-width: 768px) {
-    .video-container {
-        margin: 60px auto 10px;
-    }
-    
-    .video-container img {
-        max-height: 40vh;
-    }
-    
-    .controller-container {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px;
-    }
-    
-    .joystick-container {
-        width: 180px;
-        height: 180px;
-        order: -1;
-    }
-    
-    .joystick-thumb {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .turn-button {
-        width: 80px;
-        height: 80px;
-        font-size: 16px;
-    }
-    
-    .mode-button {
-        padding: 8px 16px;
-        font-size: 13px;
-    }
+  #joystick-container {
+    width: 180px;
+    height: 180px;
+  }
 }

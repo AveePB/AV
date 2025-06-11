@@ -1,4 +1,4 @@
-from vehicle.modules.flags import Maneuver
+from vehicle.modules.flags import Maneuver, CarMode
 from vehicle.modules.csvdata import CSVManager
 from vehicle.lib.rplidar import RPLidar
 
@@ -36,18 +36,19 @@ class Robot:
 
         # Prepare the car
         curr_maneuver = Maneuver.STOP
-        is_autonumous = False
+        curr_mode = CarMode.MANUAL
+        is_running = True
 
         # Analyze environemnt
         for i, scan in enumerate(lidar.iter_scans()):
 
             # Try to access shared memory
             if (not(data_queue.empty())):
-                is_autonumous, is_running, curr_maneuver = data_queue.get() 
+                curr_mode, is_running, curr_maneuver = data_queue.get() 
                 if (not is_running): break
             
             # Ask ML model
-            if (is_autonumous):
+            if (not(curr_mode is CarMode.MANUAL)):
                 pass 
             
             # Save scan info

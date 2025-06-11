@@ -1,13 +1,11 @@
 from vehicle.consts import LIDAR_USB_HEADER, LIDAR_DATA_PATH
-from joystick import JOYSTICK_BP, DATA_QUEUE
-from routes import ROUTES_BP
+from routes import ROUTES_BP, DATA_QUEUE
 from car import Robot
 from flask import Flask
 import multiprocessing
 
 # Configure flask application
 app = Flask(__name__)
-app.register_blueprint(JOYSTICK_BP)
 app.register_blueprint(ROUTES_BP)
 
 # Configure robot application
