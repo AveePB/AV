@@ -1,4 +1,5 @@
 #include "motors.h"
+#include "linesensor.h"
 
 // Initialize left motors
 Motors leftMTs(static_cast<int>(MotorConst::ENA), 
@@ -14,24 +15,18 @@ Motors rightMTs(static_cast<int>(MotorConst::ENB),
   static_cast<int>(MotorConst::SPEED)
 );
 
-void setup() {
+// Initialize line sensor
+LineSensor lineSensor(static_cast<int>(LineSensorConst::D1), 
+  static_cast<int>(LineSensorConst::D2),
+  static_cast<int>(LineSensorConst::D3),
+  static_cast<int>(LineSensorConst::D4),
+  static_cast<int>(LineSensorConst::D5)
+);
 
+void setup() {
+  Serial.begin(9600);
 }
 
 void loop() {
-  leftMTs.moveForward();
-  rightMTs.moveForward();
-  delay(1000);
-
-  leftMTs.stop();
-  rightMTs.stop();
-  delay(1000);
-
-  leftMTs.moveBackward();
-  rightMTs.moveBackward();
-  delay(1000);
-
-  leftMTs.stop();
-  rightMTs.stop();
-  delay(1000);
+  Movement m = lineSensor.follow();
 }

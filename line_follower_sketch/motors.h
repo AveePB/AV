@@ -14,7 +14,7 @@
 
 /**
  * @enum MotorConst
- * @brief Defines constants for motor controls
+ * @brief Defines constants for motor controls.
  */
 enum class MotorConst {
   SPEED = 100, ///< Motor speed (0-255)
@@ -24,6 +24,17 @@ enum class MotorConst {
   IN2 = 26, ///< Left motors forward pin
   IN3 = 28, ///< Right motors backward pin
   IN4 = 30, ///< Right motors forward pin
+};
+
+/**
+ * @enum Movement
+ * @brief Defines constants for car movement.
+ */
+enum class Movement {
+  MOVE_FORWARD = 0, ///< Move forward
+  TURN_LEFT = 1, ///< turn left
+  TURN_RIGHT = 2, ///< turn right
+  STOP = 3, ///< stop
 };
 
 /**
