@@ -1,5 +1,6 @@
 #include "motors.h"
 #include "linesensor.h"
+#include "ultrasonicsensor.h"
 
 // Initialize left motors
 Motors leftMTs(static_cast<int>(MotorConst::ENA), 
@@ -23,10 +24,17 @@ LineSensor lineSensor(static_cast<int>(LineSensorConst::D1),
   static_cast<int>(LineSensorConst::D5)
 );
 
+// Initialize ultrasonic sensor
+UltrasonicSensor ultrasonicSensor(static_cast<int>(UltrasonicSensorConst::TRIG),
+  static_cast<int>(UltrasonicSensorConst::ECHO),
+  SENSING_DISTANCE
+);
+
 void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
-  Movement m = lineSensor.follow();
+  bool b = ultrasonicSensor.isObstacle();
+  Serial.println(b);
 }
